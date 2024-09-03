@@ -1,0 +1,16 @@
+{
+  "name": "ampower_visualize",
+  "version": "1.0.0",
+  "description": "Visualize Transactions on ERPNext",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "three": "^0.168.0",
+    "v-network-graph": "^0.9.16"
+  }
+}
