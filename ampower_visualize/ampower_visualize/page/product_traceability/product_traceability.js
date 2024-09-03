@@ -4,40 +4,45 @@ frappe.pages['product_traceability'].on_page_load = function (wrapper) {
 		title: 'Product Traceability',
 		single_column: true
 	});
-
+	setup_fields(page)
 	$(wrapper).find('.layout-main-section').append(`
         <div class="row">
-            <div class="col-sm-3">
-                <select id="sales_order_select" class="form-control">
-                    <option value="">Select Sales Order</option>
-                </select>
-            </div>
             <div class="col-sm-9">
                 <div id="node_display" class="linked-list"></div>
             </div>
         </div>
     `);
+};
 
-	frappe.call({
-		method: 'ampower_visualize.ampower_visualize.page.product_traceability.product_traceability.get_sales_orders',
-		callback: function (r) {
-			if (r.message) {
-				let sales_orders = r.message;
-				let select = $('#sales_order_select');
-				sales_orders.forEach(so => {
-					select.append(`<option value="${so.name}">${so.name}</option>`);
+function setup_fields(page) {
+	let is_document_name_added = false;
+	let is_field_name_added = false;
+	let doctype_field = page.add_field({
+		label: 'Document Type',
+		fieldtype: 'Link',
+		fieldname: 'document_type',
+		options: 'DocType',
+		change() {
+			const doctype = doctype_field.get_value()
+			if (!is_document_name_added) {
+				is_document_name_added = true;
+				let document_field = page.add_field({
+					label: doctype_field.get_value(),
+					fieldtype: 'Link',
+					fieldname: 'document',
+					options: doctype,
+					change() {
+						const document_name = document_field.get_value();
+						if (document_name && !is_field_name_added) {
+							is_field_name_added = true;
+							display_sales_order_nodes(document_name);
+						}
+					}
 				});
 			}
 		}
 	});
-
-	$('#sales_order_select').on('change', function () {
-		let selected_order = $(this).val();
-		if (selected_order) {
-			display_sales_order_nodes(selected_order);
-		}
-	});
-};
+}
 
 function display_sales_order_nodes(sales_order) {
 	$('#node_display').empty();
@@ -72,7 +77,6 @@ function display_sales_order_nodes(sales_order) {
 
 				$('#node_display').append(nodes_html);
 
-				// click event to toggle visibility
 				$(`.parent-node[data-sales-order="${sales_order}"]`).on('click', function () {
 					$(`#child-nodes-${sales_order}`).toggle();
 				});
