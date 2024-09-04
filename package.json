@@ -10,7 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@tweenjs/tween.js": "^25.0.0",
     "three": "^0.168.0",
+    "three-trackballcontrols": "^0.9.0",
     "v-network-graph": "^0.9.16"
   }
 }
