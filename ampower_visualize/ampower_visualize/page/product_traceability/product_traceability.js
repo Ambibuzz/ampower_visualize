@@ -22,8 +22,6 @@ frappe.pages['product_traceability'].on_page_load = function (wrapper) {
     `);
 };
 
-var graph_configuration = []
-
 function setup_fields(page) {
 	let is_document_name_added = false;
 	let is_field_name_added = false;
@@ -45,8 +43,7 @@ function setup_fields(page) {
 						const document_name = document_field.get_value();
 						if (document_name && !is_field_name_added) {
 							is_field_name_added = true;
-							configure_graph();
-							render_graph(graph_configuration);
+							initialize_graph(doctype, document_name)
 						}
 					}
 				});
@@ -55,13 +52,12 @@ function setup_fields(page) {
 	});
 }
 
-function configure_graph() {
-	console.log('graph configured!');
-}
-
-function render_graph(message) {
+function initialize_graph(doctype, document_name) {
 	frappe.require('canvas.bundle.js').then(() => {
-		window.get_animation(message);
+		window.add_parent_node(doctype, document_name);
+		display_linked_documents(doctype, document_name);
+		window.add_child_node(document_name);
+		window.add_child_node(document_name);
 	})
 }
 
