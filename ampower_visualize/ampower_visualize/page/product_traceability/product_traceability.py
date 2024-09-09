@@ -4,21 +4,27 @@ import frappe
 def get_linked_documents(doctype, docname):
     linked_docs = []
 
-    link_fields = frappe.get_all('DocField', filters={
-        'options': doctype,
-        'fieldtype': 'Link'
-    }, fields=['parent', 'fieldname'])
+    linked_doctypes = frappe.get_all('DocField',
+        filters={
+            'options': doctype,
+            'fieldtype': 'Link'
+        },
+        fields=['parent', 'fieldname']
+    )
 
-    for link_field in link_fields:
-        linked_records = frappe.get_all(link_field.parent, filters={link_field.fieldname: docname}, fields=['name'])
+    for link in linked_doctypes:
+        try:    # exception handling for records without a parent
+            linked_records = frappe.get_all(link['parent'],
+                filters={link['fieldname']: docname},
+                fields=['name', 'parent']
+            )
+        except Exception as e:
+            continue
         for record in linked_records:
-            linked_docs.append({'doctype': link_field.parent, 'name': record.comments})
-
-    dynamic_links = frappe.get_all('Dynamic Link', filters={
-        'link_doctype': doctype,
-        'link_name': docname
-    }, fields=['parenttype as doctype', 'parent as name'])
-
-    linked_docs.extend(dynamic_links)
+            linked_docs.append({
+                'linked_doctype': link['parent'],
+                'linked_name': record['name'],
+                'linked_parent': record['parent']
+            })
 
     return linked_docs

@@ -4,25 +4,10 @@ frappe.pages['product_traceability'].on_page_load = function (wrapper) {
 		title: 'Product Traceability',
 		single_column: true
 	});
-	setup_fields(page)
-	$(wrapper).find('.layout-size-section').append(`
-		<script type="importmap">
-			{
-				"imports": {
-				"three": "https://cdn.jsdelivr.net/npm/three@0.168.0/build/three.module.js",
-				"three/addons/": "https://cdn.jsdelivr.net/npm/three@0.168.0/examples/jsm/"
-				}
-			}
-		</script>
-        <div class="row">
-            <div class="col-sm-9">
-                <div id="node_display" class="linked-list"></div>
-            </div>
-        </div>
-    `);
+	setup_fields(page, wrapper)
 };
 
-function setup_fields(page) {
+function setup_fields(page, wrapper) {
 	let is_document_name_added = false;
 	let is_field_name_added = false;
 	let doctype_field = page.add_field({
@@ -43,7 +28,7 @@ function setup_fields(page) {
 						const document_name = document_field.get_value();
 						if (document_name && !is_field_name_added) {
 							is_field_name_added = true;
-							initialize_graph(doctype, document_name)
+							display_linked_documents(wrapper, doctype, document_name)
 						}
 					}
 				});
@@ -52,16 +37,27 @@ function setup_fields(page) {
 	});
 }
 
-function initialize_graph(doctype, document_name) {
-	frappe.require('canvas.bundle.js').then(() => {
-		window.add_parent_node(doctype, document_name);
-		display_linked_documents(doctype, document_name);
-		window.add_child_node(document_name);
-		window.add_child_node(document_name);
-	})
+function log_to_console() {
+	console.log("Log function called from appended html")
 }
 
-function display_linked_documents(doctype, docname) {
+const append_base_html = (data, wrapper, document_name) => {
+	$(wrapper).find('.layout-main-section').append(`
+        <div class="row">
+            <div class="col-sm-9">
+                <div id="node_display" class="linked-list">The documents linked to ${document_name} are:</div>
+				<ul>
+				    ${data.map((doc) => `<li>${doc.linked_doctype} - ${doc.linked_parent}</li>`).join('')}
+				</ul>
+            </div>
+			<button onclick="log_to_console()">
+				LOG ON CONSOLE
+			</button>
+        </div>
+    `);
+}
+
+const display_linked_documents = (wrapper, doctype, docname) => {
 	frappe.call({
 		method: 'ampower_visualize.ampower_visualize.page.product_traceability.product_traceability.get_linked_documents',
 		args: {
@@ -70,6 +66,7 @@ function display_linked_documents(doctype, docname) {
 		},
 		callback: function (r) {
 			console.log(r.message)
+			append_base_html(r.message, wrapper, docname);
 		}
 	});
 }
