@@ -7,7 +7,10 @@ frappe.pages['product_traceability'].on_page_load = function (wrapper) {
 	setup_fields(page, wrapper)
 };
 
+var global_document_name, global_doctype, global_wrapper;
+
 const setup_fields = (page, wrapper) => {
+	global_wrapper = wrapper;
 	let is_document_name_added = false;
 	let is_field_name_added = false;
 	let doctype_field = page.add_field({
@@ -17,6 +20,7 @@ const setup_fields = (page, wrapper) => {
 		options: 'DocType',
 		change() {
 			const doctype = doctype_field.get_value();
+			global_doctype = doctype;
 			if (!is_document_name_added) {
 				is_document_name_added = true;
 				let document_field = page.add_field({
@@ -26,19 +30,16 @@ const setup_fields = (page, wrapper) => {
 					options: doctype,
 					change() {
 						const document_name = document_field.get_value();
+						global_document_name = document_name;
 						if (document_name && !is_field_name_added) {
 							is_field_name_added = true;
-							display_linked_documents(wrapper, doctype, document_name)
+							append_base_html(wrapper, doctype, document_name);
 						}
 					}
 				});
 			}
 		}
 	});
-}
-
-const log_to_console = () => {
-	console.log("Log function called from appended html")
 }
 
 const makeDraggable = (element) => {
@@ -75,14 +76,17 @@ const makeDraggable = (element) => {
 	}
 }
 
-const append_base_html = (data, wrapper, document_name) => {
+const append_base_html = (wrapper, doctype, document_name) => {
 	$(wrapper).find('.layout-main-section').append(`
 		<style>
 			#canvasContainer {
 				position: relative;
-				width: 100%;
+				margin-top: 5%;
+				margin-left: 10%;
+				width: 80%;
 				height: 600px;
 				border: 1px solid #ccc;
+				border-radius: 5px;
 				overflow: hidden;
 			}
 
@@ -97,8 +101,10 @@ const append_base_html = (data, wrapper, document_name) => {
 
 			.embedded-div {
 				position: absolute;
+				border-radius: 12px;
 				padding: 10px;
-				background-color: #f0f0f0;
+				background-color: #ff8000;
+				color: #000000;
 				border: 1px solid #999;
 				cursor: move;
 				user-select: none;
@@ -120,37 +126,33 @@ const append_base_html = (data, wrapper, document_name) => {
 				scale *= delta;
 				contentWrapper.style.transform = \`scale(\${scale})\`;
 			});
-			addButton.addEventListener('click', () => {
-				const newDiv = document.createElement('div');
-				newDiv.className = 'embedded-div';
-				newDiv.style.top = '100px';
-				newDiv.style.left = '100px';
-				newDiv.textContent = 'New Div';
-				contentWrapper.appendChild(newDiv);
-				makeDraggable(newDiv);
-			});
 		</script>
-        <div id="canvasContainer">
+        <center id="canvasContainer">
 			<div id="contentWrapper">
-				<div class="embedded-div" style="top: 80px; left: 20px;">Embedded Div 1</div>
-				<div class="embedded-div" style="top: 100px; left: 150px;">Embedded Div 2</div>
-				<div class="embedded-div" style="top: 200px; left: 50px;">Embedded Div 3</div>
+				<div onClick="display_linked_documents()" class="embedded-div" style="top: 20px; left: 20px;">${doctype}<div>${document_name}</div></div>
 			</div>
-		</div>
-		<button id="addButton">Add New Div</button>
+		</center>
     `);
 }
 
-const display_linked_documents = (wrapper, doctype, docname) => {
+const display_linked_documents = () => {
 	frappe.call({
 		method: 'ampower_visualize.ampower_visualize.page.product_traceability.product_traceability.get_linked_documents',
 		args: {
-			doctype: doctype,
-			docname: docname
+			doctype: global_doctype,
+			docname: global_document_name
 		},
 		callback: function (r) {
-			console.log(r.message)
-			append_base_html(r.message, wrapper, docname);
+			console.log(r.message);
+			for (let i = 0; i < r.message.length; i++) {
+				const newDiv = document.createElement('div');
+				newDiv.className = 'embedded-div';
+				newDiv.style.top = `${(i + 1) * 50 + 50}px`;
+				newDiv.style.left = `${(i + 1) * 50 + 50}px`;
+				newDiv.textContent = `${r.message[i].linked_doctype} - ${r.message[i].linked_parent}`;
+				$(global_wrapper).find('#contentWrapper').append(newDiv)
+				makeDraggable(newDiv);
+			}
 		}
 	});
 }
