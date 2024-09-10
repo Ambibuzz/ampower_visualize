@@ -4,10 +4,10 @@ frappe.pages['product_traceability'].on_page_load = function (wrapper) {
 		title: 'Product Traceability',
 		single_column: true
 	});
-	setup_fields(page, wrapper)
-};
+	setup_fields(page, wrapper);
+}
 
-var global_document_name, global_doctype, global_wrapper;
+var global_wrapper;
 
 const setup_fields = (page, wrapper) => {
 	global_wrapper = wrapper;
@@ -20,7 +20,6 @@ const setup_fields = (page, wrapper) => {
 		options: 'DocType',
 		change() {
 			const doctype = doctype_field.get_value();
-			global_doctype = doctype;
 			if (!is_document_name_added) {
 				is_document_name_added = true;
 				let document_field = page.add_field({
@@ -30,7 +29,6 @@ const setup_fields = (page, wrapper) => {
 					options: doctype,
 					change() {
 						const document_name = document_field.get_value();
-						global_document_name = document_name;
 						if (document_name && !is_field_name_added) {
 							is_field_name_added = true;
 							append_base_html(wrapper, doctype, document_name);
@@ -94,8 +92,8 @@ const append_base_html = (wrapper, doctype, document_name) => {
 				position: absolute;
 				top: 0;
 				left: 0;
-				width: 100%;
-				height: 100%;
+				width: 5000%;
+				height: 5000%;
 				transform-origin: 0 0;
 			}
 
@@ -129,28 +127,53 @@ const append_base_html = (wrapper, doctype, document_name) => {
 		</script>
         <center id="canvasContainer">
 			<div id="contentWrapper">
-				<div onClick="display_linked_documents()" class="embedded-div" style="top: 20px; left: 20px;">${doctype}<div>${document_name}</div></div>
+				<div onClick="toggle_linked_documents('${doctype}', '${document_name}', this, 1)" class="embedded-div" style="top: 20px; left: 20px;">
+					${doctype} <br/> ${document_name}
+				</div>
 			</div>
 		</center>
     `);
 }
 
-const display_linked_documents = () => {
+const toggle_linked_documents = (doctype, document_name, parentDiv, level) => {
+	if (parentDiv.expanded) {
+		remove_child_divs(level);
+		parentDiv.expanded = false;
+	} else {
+		display_linked_documents(doctype, document_name, parentDiv, level);
+		parentDiv.expanded = true;
+	}
+}
+
+const remove_child_divs = (parentLevel) => {
+	$(global_wrapper).find('.child-div').each(function () {
+		const divLevel = parseInt($(this).attr('level'));
+		if (divLevel > parentLevel) {
+			$(this).remove();
+		}
+	});
+}
+
+const display_linked_documents = (doctype, document_name, parentDiv, level) => {
 	frappe.call({
 		method: 'ampower_visualize.ampower_visualize.page.product_traceability.product_traceability.get_linked_documents',
 		args: {
-			doctype: global_doctype,
-			docname: global_document_name
+			doctype: doctype,
+			docname: document_name
 		},
 		callback: function (r) {
 			console.log(r.message);
 			for (let i = 0; i < r.message.length; i++) {
 				const newDiv = document.createElement('div');
-				newDiv.className = 'embedded-div';
+				newDiv.className = 'embedded-div child-div';
+				newDiv.setAttribute('level', level + 1);
 				newDiv.style.top = `${(i + 1) * 50 + 50}px`;
 				newDiv.style.left = `${(i + 1) * 50 + 50}px`;
 				newDiv.textContent = `${r.message[i].linked_doctype} - ${r.message[i].linked_parent}`;
-				$(global_wrapper).find('#contentWrapper').append(newDiv)
+				newDiv.addEventListener('click', () => {
+					toggle_linked_documents(r.message[i].linked_doctype, r.message[i].linked_parent, newDiv, level + 1);
+				});
+				$(global_wrapper).find('#contentWrapper').append(newDiv);
 				makeDraggable(newDiv);
 			}
 		}
