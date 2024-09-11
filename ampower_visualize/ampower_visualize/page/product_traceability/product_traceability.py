@@ -1,7 +1,7 @@
 import frappe
 
 @frappe.whitelist()
-def get_linked_documents(doctype, docname):
+def get_linked_documents(doctype = "Delivery Note", docname = "MAT-DN-2024-00002"):
     linked_docs = []
 
     linked_doctypes = frappe.get_all('DocField',
@@ -16,7 +16,7 @@ def get_linked_documents(doctype, docname):
         try:    # exception handling for records without a parent
             linked_records = frappe.get_all(link['parent'],
                 filters={link['fieldname']: docname},
-                fields=['name', 'parent']
+                fields=['name', 'parent', 'parenttype']
             )
         except Exception as e:
             continue
@@ -24,7 +24,8 @@ def get_linked_documents(doctype, docname):
             linked_docs.append({
                 'linked_doctype': link['parent'],
                 'linked_name': record['name'],
-                'linked_parent': record['parent']
+                'linked_parent': record['parent'],
+                'linked_parenttype': record['parenttype']
             })
-
+    print(linked_docs)
     return linked_docs

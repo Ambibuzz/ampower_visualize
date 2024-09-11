@@ -155,6 +155,7 @@ const remove_child_divs = (parentLevel) => {
 }
 
 const display_linked_documents = (doctype, document_name, parentDiv, level) => {
+	console.log(doctype, document_name);
 	frappe.call({
 		method: 'ampower_visualize.ampower_visualize.page.product_traceability.product_traceability.get_linked_documents',
 		args: {
@@ -169,9 +170,9 @@ const display_linked_documents = (doctype, document_name, parentDiv, level) => {
 				newDiv.setAttribute('level', level + 1);
 				newDiv.style.top = `${(i + 1) * 50 + 50}px`;
 				newDiv.style.left = `${(i + 1) * 50 + 50}px`;
-				newDiv.textContent = `${r.message[i].linked_doctype} - ${r.message[i].linked_parent}`;
+				newDiv.textContent = `${r.message[i].linked_parent} - ${r.message[i].linked_parenttype}`;
 				newDiv.addEventListener('click', () => {
-					toggle_linked_documents(r.message[i].linked_doctype, r.message[i].linked_parent, newDiv, level + 1);
+					toggle_linked_documents(r.message[i].linked_parenttype, r.message[i].linked_parent, newDiv, level + 1);
 				});
 				$(global_wrapper).find('#contentWrapper').append(newDiv);
 				makeDraggable(newDiv);
