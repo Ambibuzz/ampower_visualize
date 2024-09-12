@@ -164,6 +164,10 @@ const display_linked_documents = (doctype, document_name, parentDiv, level) => {
 		},
 		callback: function (r) {
 			console.log(r.message);
+			if(!r.message.length) {
+				frappe.throw("This is the last node.");
+				return;
+			}
 			for (let i = 0; i < r.message.length; i++) {
 				const newDiv = document.createElement('div');
 				newDiv.className = 'embedded-div child-div';
