@@ -4,13 +4,18 @@ frappe.pages['product_traceability'].on_page_load = (wrapper) => {
 		title: 'Product Traceability',
 		single_column: true
 	});
-	setup_fields(page, wrapper);
+	setup_fields(page, wrapper);	// creates fields for taking user input
 }
 
+/**
+ * wrapper cannot be passed back and forth from the appended html
+ * hence needs to be maintained in the global scope
+ * How does this work? Read about variable hoisting: https://developer.mozilla.org/en-US/docs/Glossary/Hoisting
+ */
 var global_wrapper;
 
 const setup_fields = (page, wrapper) => {
-	global_wrapper = wrapper;
+	global_wrapper = wrapper;	// wrapper hoisted to top level
 	let is_document_name_added = false;
 	let is_field_name_added = false;
 	let doctype_field = page.add_field({
@@ -40,6 +45,9 @@ const setup_fields = (page, wrapper) => {
 	});
 }
 
+/**
+ * Appends base HTML elements, scripts and styles directly to the document
+ */
 const append_base_html = (wrapper, doctype, document_name) => {
 	$(wrapper).find('.layout-main-section').append(`
 		<script>
@@ -94,6 +102,10 @@ const append_base_html = (wrapper, doctype, document_name) => {
     `);
 }
 
+
+/**
+ * Refreshes the list properties on the page
+ */
 const refresh_list_properties = () => {
 	const togglerLinks = document.querySelectorAll(".tree a");
 	togglerLinks.forEach(link => {
@@ -108,6 +120,11 @@ const refresh_list_properties = () => {
 	});
 }
 
+/**
+ * takes the doctype and document_name as parameters and returns a list of links to that document
+ * then, this list is iterated and a child node is created for each link
+ * these children are then clubbed into an HTML ul, and appended to the base HTML on canvas
+ */
 const get_linked_documents = (doctype, document_name) => {
 	const nodeElement = document.querySelector(`.${document_name}`);
 	if (!nodeElement.isExpanded) {
@@ -145,7 +162,7 @@ const get_linked_documents = (doctype, document_name) => {
 			}
 			$(global_wrapper).find(`.${document_name}`).append(new_list);
 			nodeElement.isExpanded = true;
-			refresh_list_properties();
+			refresh_list_properties();	// sets properties to newly added list items
 		}
 	});
 }
