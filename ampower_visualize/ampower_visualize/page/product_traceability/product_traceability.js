@@ -1,4 +1,4 @@
-frappe.pages['product_traceability'].on_page_load = function (wrapper) {
+frappe.pages['product_traceability'].on_page_load = (wrapper) => {
 	let page = frappe.ui.make_app_page({
 		parent: wrapper,
 		title: 'Product Traceability',
@@ -40,146 +40,221 @@ const setup_fields = (page, wrapper) => {
 	});
 }
 
-const makeDraggable = (element) => {
-	let isDragging = false;
-	let startX, startY;
-
-	element.addEventListener('mousedown', startDragging);
-	element.addEventListener('touchstart', startDragging);
-
-	document.addEventListener('mousemove', drag);
-	document.addEventListener('touchmove', drag);
-
-	document.addEventListener('mouseup', stopDragging);
-	document.addEventListener('touchend', stopDragging);
-
-	function startDragging(e) {
-		isDragging = true;
-		const rect = element.getBoundingClientRect();
-		startX = (e.clientX || e.touches[0].clientX) - rect.left;
-		startY = (e.clientY || e.touches[0].clientY) - rect.top;
-		e.preventDefault();
-	}
-
-	function drag(e) {
-		if (!isDragging) return;
-		const x = (e.clientX || e.touches[0].clientX) - canvasContainer.getBoundingClientRect().left;
-		const y = (e.clientY || e.touches[0].clientY) - canvasContainer.getBoundingClientRect().top;
-		element.style.left = ((x - startX) / scale) + 'px';
-		element.style.top = ((y - startY) / scale) + 'px';
-	}
-
-	function stopDragging() {
-		isDragging = false;
-	}
-}
-
 const append_base_html = (wrapper, doctype, document_name) => {
 	$(wrapper).find('.layout-main-section').append(`
-		<style>
-			#canvasContainer {
-				position: relative;
-				margin-top: 5%;
-				margin-left: 10%;
-				width: 80%;
-				height: 600px;
-				border: 1px solid #ccc;
-				border-radius: 5px;
-				overflow: hidden;
-			}
-
-			#contentWrapper {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 5000%;
-				height: 5000%;
-				transform-origin: 0 0;
-			}
-
-			.embedded-div {
-				position: absolute;
-				border-radius: 12px;
-				padding: 10px;
-				background-color: #ff8000;
-				color: #000000;
-				border: 1px solid #999;
-				cursor: move;
-				user-select: none;
-			}
-
-			#addButton {
-				margin-top: 10px;
-			}
-		</style>
 		<script>
+			const container = document.getElementById('canvas-container');
+			const canvas = document.getElementById('canvas');
+			let isDragging = false;
+			let startX, startY;
+			let offsetX = 0, offsetY = 0;
 			let scale = 1;
-			const contentWrapper = document.getElementById('contentWrapper');
-			const canvasContainer = document.getElementById('canvasContainer');
-			const addButton = document.getElementById('addButton');
-			document.querySelectorAll('.embedded-div').forEach(makeDraggable);
-			canvasContainer.addEventListener('wheel', (e) => {
-				e.preventDefault();
-				const delta = e.deltaY > 0 ? 0.9 : 1.1;
-				scale *= delta;
-				contentWrapper.style.transform = \`scale(\${scale})\`;
+			const updateTransform = () => {
+				canvas.style.transform = \`translate(\${offsetX}px, \${offsetY}px) scale(\${scale})\`;
+			}
+			const handleMouseDown = (e) => {
+				isDragging = true;
+				startX = e.clientX - offsetX;
+				startY = e.clientY - offsetY;
+				container.style.cursor = 'grabbing';
+			}
+			const handleMouseMove = (e) => {
+				if (isDragging) {
+					offsetX = e.clientX - startX;
+					offsetY = e.clientY - startY;
+					updateTransform();
+				}
+			}
+			const handleMouseUp = () => {
+				isDragging = false;
+				container.style.cursor = 'move';
+			}
+			container.addEventListener('mousedown', handleMouseDown);
+			container.addEventListener('mousemove', handleMouseMove);
+			container.addEventListener('mouseup', handleMouseUp);
+			container.addEventListener('mouseleave', handleMouseUp);
+			const togglerLinks = document.querySelectorAll(".tree a");
+			togglerLinks.forEach(link => {
+				link.addEventListener("click", function (event) {
+					event.preventDefault();
+					const childUl = this.nextElementSibling;
+					if (childUl) {
+						childUl.classList.toggle("active");
+						this.classList.toggle("expanded");
+					}
+				});
 			});
 		</script>
-        <center id="canvasContainer">
-			<div id="contentWrapper">
-				<div onClick="toggle_linked_documents('${doctype}', '${document_name}', this, 1)" class="embedded-div" style="top: 20px; left: 20px;">
-					${doctype} <br/> ${document_name}
+		<style>
+			#canvas-container {
+				width: 1000px;
+				height: 600px;
+				background-color: blue;
+				border: 1px solid yellow;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				overflow: hidden;
+				cursor: move;
+			}
+			#canvas {
+				position: relative;
+				width: 9999px;
+				height: 9999px;
+				}
+			.tree {
+				width: 9999px;
+    			height: 9999px;
+			}
+			.tree ul {
+				padding-top: 20px;
+				position: relative;
+				transition: .5s;
+			}
+			.tree li {
+				display: inline-table;
+				text-align: center;
+				color: black;
+				list-style-type: none;
+				position: relative;
+				padding: 10px;
+				transition: .5s;
+			}
+			.tree li::before,
+			.tree li::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				right: 50%;
+				border-top: 1px solid #ccc;
+				width: 51%;
+				height: 10px;
+			}
+			.tree li::after {
+				right: auto;
+				left: 50%;
+				border-left: 1px solid #ccc;
+			}
+			.tree li:only-child::after,
+			.tree li:only-child::before {
+				display: none;
+			}
+			.tree li:only-child {
+				padding-top: 0;
+			}
+			.tree li:first-child::before,
+			.tree li:last-child::after {
+				border: 0 none;
+			}
+			.tree li:last-child::before {
+				border-right: 1px solid #ccc;
+				border-radius: 0 5px 0 0;
+				-webkit-border-radius: 0 5px 0 0;
+				-moz-border-radius: 0 5px 0 0;
+			}
+			.tree li:first-child::after {
+				border-radius: 5px 0 0 0;
+				-webkit-border-radius: 5px 0 0 0;
+				-moz-border-radius: 5px 0 0 0;
+			}
+			.tree ul ul::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 50%;
+				color: red;
+				border-left: 1px solid #000;
+				width: 0;
+				height: 20px;
+			}
+			.tree li a {
+				border: 1px solid #000;
+				padding: 10px;
+				display: inline-grid;
+				border-radius: 5px;
+				text-decoration-line: none;
+				border-radius: 5px;
+				transition: .5s;
+			}
+			.tree li a span {
+				border: 1px solid #ccc;
+				border-radius: 5px;
+				color: #555;
+				padding: 8px;
+				font-size: 12px;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				font-weight: 500;
+			}
+			.tree li a:hover,
+			.tree li a:hover i,
+			.tree li a:hover span,
+			.tree li a:hover+ul li a {
+				background: #000;
+				color: purple;
+				border: 1px solid #000;
+			}
+			.tree li a:hover+ul li::after,
+			.tree li a:hover+ul li::before,
+			.tree li a:hover+ul::before,
+			.tree li a:hover+ul ul::before {
+				border-color: black;
+			}
+			.tree>ul {
+				display: block;
+			}
+			.tree ul ul {
+				display: none;
+			}
+			.tree ul ul.active {
+				display: block;
+			}
+		</style>
+		<div>
+			<div id="canvas-container">
+				<div id="canvas">
+					<div class="tree">
+						<ul>
+							<li class="${document_name}">
+								<a onclick="get_linked_documents('${doctype}', '${document_name}')">${document_name} <br/> ${doctype}</a>
+								<ul>
+									<li>
+										<a href="#">Customer</a>
+										<ul>
+											<li><a href="#">Tata Motors</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
-		</center>
+		</div>
     `);
 }
 
-const toggle_linked_documents = (doctype, document_name, parentDiv, level) => {
-	if (parentDiv.expanded) {
-		remove_child_divs(level);
-		parentDiv.expanded = false;
-	} else {
-		display_linked_documents(doctype, document_name, parentDiv, level);
-		parentDiv.expanded = true;
-	}
-}
-
-const remove_child_divs = (parentLevel) => {
-	$(global_wrapper).find('.child-div').each(function () {
-		const divLevel = parseInt($(this).attr('level'));
-		if (divLevel > parentLevel) {
-			$(this).remove();
-		}
-	});
-}
-
-const display_linked_documents = (doctype, document_name, parentDiv, level) => {
+const get_linked_documents = (doctype, document_name) => {
 	console.log(doctype, document_name);
 	frappe.call({
-		method: 'ampower_visualize.ampower_visualize.page.product_traceability.product_traceability.get_linked_documents',
+		method: 'ampower_visualize.ampower_visualize.page.product_traceability.product_traceability.get_linked_documents',	// fetched list of nodes (backend)
 		args: {
 			doctype: doctype,
 			docname: document_name
 		},
 		callback: function (r) {
 			console.log(r.message);
-			if(!r.message.length) {
-				frappe.throw("This is the last node.");
+			if (!r.message.length) {
+				console.log("This is the last node in the list")
 				return;
 			}
 			for (let i = 0; i < r.message.length; i++) {
-				const newDiv = document.createElement('div');
-				newDiv.className = 'embedded-div child-div';
-				newDiv.setAttribute('level', level + 1);
-				newDiv.style.top = `${(i + 1) * 50 + 50}px`;
-				newDiv.style.left = `${(i + 1) * 50 + 50}px`;
-				newDiv.textContent = `${r.message[i].linked_parent} - ${r.message[i].linked_parenttype}`;
+				const newDiv = document.createElement('li');
+				newDiv.className = r.message[i].linked_parent;
+				newDiv.innerHTML = `<a>${r.message[i].linked_parent} - ${r.message[i].linked_parenttype}</a>`;
 				newDiv.addEventListener('click', () => {
-					toggle_linked_documents(r.message[i].linked_parenttype, r.message[i].linked_parent, newDiv, level + 1);
+					get_linked_documents(r.message[i].linked_parenttype, r.message[i].linked_parent);
 				});
-				$(global_wrapper).find('#contentWrapper').append(newDiv);
-				makeDraggable(newDiv);
+				$(global_wrapper).find(`.${document_name}`).append(newDiv);
+				console.log(global_wrapper);
 			}
 		}
 	});
