@@ -73,17 +73,7 @@ const append_base_html = (wrapper, doctype, document_name) => {
 			container.addEventListener('mousemove', handleMouseMove);
 			container.addEventListener('mouseup', handleMouseUp);
 			container.addEventListener('mouseleave', handleMouseUp);
-			const togglerLinks = document.querySelectorAll(".tree a");
-			togglerLinks.forEach(link => {
-				link.addEventListener("click", function (event) {
-					event.preventDefault();
-					const childUl = this.nextElementSibling;
-					if (childUl) {
-						childUl.classList.toggle("active");
-						this.classList.toggle("expanded");
-					}
-				});
-			});
+			refresh_list_properties();
 		</script>
 		<style>
 			#canvas-container {
@@ -124,14 +114,14 @@ const append_base_html = (wrapper, doctype, document_name) => {
 				position: absolute;
 				top: 0;
 				right: 50%;
-				border-top: 1px solid #ccc;
+				border-top: 1px solid #000;
 				width: 51%;
 				height: 10px;
 			}
 			.tree li::after {
 				right: auto;
 				left: 50%;
-				border-left: 1px solid #ccc;
+				border-left: 1px solid #000;
 			}
 			.tree li:only-child::after,
 			.tree li:only-child::before {
@@ -145,7 +135,7 @@ const append_base_html = (wrapper, doctype, document_name) => {
 				border: 0 none;
 			}
 			.tree li:last-child::before {
-				border-right: 1px solid #ccc;
+				border-right: 1px solid #000;
 				border-radius: 0 5px 0 0;
 				-webkit-border-radius: 0 5px 0 0;
 				-moz-border-radius: 0 5px 0 0;
@@ -175,7 +165,7 @@ const append_base_html = (wrapper, doctype, document_name) => {
 				transition: .5s;
 			}
 			.tree li a span {
-				border: 1px solid #ccc;
+				border: 1px solid #000;
 				border-radius: 5px;
 				color: #555;
 				padding: 8px;
@@ -215,14 +205,6 @@ const append_base_html = (wrapper, doctype, document_name) => {
 						<ul>
 							<li class="${document_name}">
 								<a onclick="get_linked_documents('${doctype}', '${document_name}')">${document_name} <br/> ${doctype}</a>
-								<ul>
-									<li>
-										<a href="#">Customer</a>
-										<ul>
-											<li><a href="#">Tata Motors</a></li>
-										</ul>
-									</li>
-								</ul>
 							</li>
 						</ul>
 					</div>
@@ -232,10 +214,31 @@ const append_base_html = (wrapper, doctype, document_name) => {
     `);
 }
 
+const refresh_list_properties = () => {
+	const togglerLinks = document.querySelectorAll(".tree a");
+	togglerLinks.forEach(link => {
+		link.addEventListener("click", function (event) {
+			event.preventDefault();
+			const childUl = this.nextElementSibling;
+			if (childUl) {
+				childUl.classList.toggle("active");
+				this.classList.toggle("expanded");
+			}
+		});
+	});
+}
+
 const get_linked_documents = (doctype, document_name) => {
-	console.log(doctype, document_name);
+	console.log(global_wrapper)
+	const nodeElement = document.querySelector(`.${document_name}`);
+	if (!nodeElement.isExpanded) {
+		nodeElement.isExpanded = false;
+	}
+	if (nodeElement.isExpanded) {
+		return;
+	}
 	frappe.call({
-		method: 'ampower_visualize.ampower_visualize.page.product_traceability.product_traceability.get_linked_documents',	// fetched list of nodes (backend)
+		method: 'ampower_visualize.ampower_visualize.page.product_traceability.product_traceability.get_linked_documents',
 		args: {
 			doctype: doctype,
 			docname: document_name
@@ -243,19 +246,23 @@ const get_linked_documents = (doctype, document_name) => {
 		callback: function (r) {
 			console.log(r.message);
 			if (!r.message.length) {
-				console.log("This is the last node in the list")
+				console.log("EOL");
 				return;
 			}
+			const new_list = document.createElement("ul");
+			new_list.className = "active";
 			for (let i = 0; i < r.message.length; i++) {
-				const newDiv = document.createElement('li');
-				newDiv.className = r.message[i].linked_parent;
-				newDiv.innerHTML = `<a>${r.message[i].linked_parent} - ${r.message[i].linked_parenttype}</a>`;
-				newDiv.addEventListener('click', () => {
+				const new_item = document.createElement("li");
+				new_item.className = r.message[i].linked_parent;
+				new_item.innerHTML = `<a>${r.message[i].linked_parent} <br/> ${r.message[i].linked_parenttype}</a>`;
+				new_item.onclick = () => {
 					get_linked_documents(r.message[i].linked_parenttype, r.message[i].linked_parent);
-				});
-				$(global_wrapper).find(`.${document_name}`).append(newDiv);
-				console.log(global_wrapper);
+				};
+				new_list.appendChild(new_item);
 			}
+			$(global_wrapper).find(`.${document_name}`).append(new_list);
+			nodeElement.isExpanded = true;
+			refresh_list_properties();
 		}
 	});
 }
