@@ -19,26 +19,27 @@ frappe.pages['product_traceability'].on_page_load = (wrapper) => {
 	append_static_html();
 }
 
+let previous_doctype_name = 'Select DocType', previous_document_name = 'Select Document'	// default value gets updated after selection
+
 /**
  * created fields for user input and disables default onchange events
- * @field {String} doctype
- * @field {String} document_name
+ * @param {Object} page
+ * @param {Object} wrapper
  */
 const setup_fields = (page, wrapper) => {
-	let previous_document_name, previous_doctype_name;
 	let doctype_field = page.add_field({
-		label: 'Document Type',
+		label: previous_doctype_name,	// updating label for now, because setup_fields is called again when doctype is changed
 		fieldtype: 'Link',
 		fieldname: 'document_type',
 		options: 'DocType',
 		change() {
 			const doctype = doctype_field.get_value();
-			if (doctype !== previous_doctype_name) {
+			if (doctype !== previous_doctype_name) {	// frappe triggers the onchange callback twice, this check rules out the second callback
+				previous_doctype_name = doctype;
 				page.clear_fields();
 				setup_fields(page, wrapper);
-				previous_doctype_name = doctype;
 				let document_field = page.add_field({
-					label: doctype_field.get_value(),
+					label: "Select " + doctype_field.get_value(),
 					fieldtype: 'Link',
 					fieldname: 'document',
 					options: doctype,
@@ -94,6 +95,8 @@ const append_static_html = () => {
  * Appends dynamic HTML elements and scripts to the document
  * called every time the user changes the document_name or doctype
  * hence needs to be added dynamically
+ * @param {String} doctype
+ * @param {String} document_name
  */
 const append_dynamic_html = (doctype, document_name) => {
 	$(global_wrapper).find('.layout-main-section').append(`
@@ -114,7 +117,7 @@ const append_dynamic_html = (doctype, document_name) => {
 						<div class="tree">
 							<ul>
 								<li class="${document_name}">
-									<a onclick="get_linked_documents('${doctype}', '${document_name}')"><b>${document_name} - ${doctype}</b></a>
+									<a onclick="append_linked_nodes('${doctype}', '${document_name}')"><b>${document_name} - ${doctype}</b></a>
 								</li>
 							</ul>
 						</div>
@@ -122,7 +125,7 @@ const append_dynamic_html = (doctype, document_name) => {
 				</div>
 			</div>
 		</div>
-    `);
+	`);
 }
 
 /**
@@ -146,8 +149,10 @@ const refresh_list_properties = () => {
  * takes the doctype and document_name as parameters and returns a list of links to that document
  * then, this list is iterated and a child node is created for each link
  * these children are then clubbed into an HTML ul, and appended to the base HTML on canvas
+ * @param {String} doctype
+ * @param {String} document_name
  */
-const get_linked_documents = (doctype, document_name) => {
+const append_linked_nodes = (doctype, document_name) => {
 	const nodeElement = document.querySelector(`.${document_name}`);
 	if (!nodeElement.isExpanded) {
 		nodeElement.isExpanded = false;
@@ -172,10 +177,12 @@ const get_linked_documents = (doctype, document_name) => {
 			for (let i = 0; i < r.message.length; i++) {
 				const new_item = document.createElement("li");
 				new_item.className = r.message[i].linked_parent;
-				new_item.innerHTML = `<a>${r.message[i].linked_parent} <br/> ${r.message[i].linked_parenttype}</a>`;
-				new_item.onclick = () => {
-					get_linked_documents(r.message[i].linked_parenttype, r.message[i].linked_parent);
-				};
+				const new_link = document.createElement("a");
+				new_link.innerHTML = `${r.message[i].linked_parent} <br/> ${r.message[i].linked_parenttype}`;
+				new_link.onclick = () => {
+					append_linked_nodes(r.message[i].linked_parenttype, r.message[i].linked_parent);
+				}
+				new_item.appendChild(new_link);
 				new_list.appendChild(new_item);
 			}
 			$(global_wrapper).find(`.${document_name}`).append(new_list);
