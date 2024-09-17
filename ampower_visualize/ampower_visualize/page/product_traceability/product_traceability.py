@@ -2,6 +2,10 @@ import frappe
 
 @frappe.whitelist()
 def get_linked_documents(doctype, docname):
+
+	if not doctype or not docname:
+		return []
+
 	linked_docs = []
 
 	# Fetch all fields of type 'Link' in all doctypes where the 'options' field equals the given 'doctype'
