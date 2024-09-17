@@ -99,6 +99,20 @@ const append_static_html = () => {
  * @param {String} document_name
  */
 const append_dynamic_html = (doctype, document_name) => {
+	if (!doctype) {
+		frappe.show_alert({
+			message: __('No doctype specified'),
+			indicator: 'yellow'
+		}, 2);
+		return;
+	}
+	if (!document_name) {
+		frappe.show_alert({
+			message: __('No document name specified'),
+			indicator: 'yellow'
+		}, 2);
+		return;
+	}
 	$(global_wrapper).find('.layout-main-section').append(`
 		<div class="top-level-parent">
 			<script>
@@ -153,6 +167,13 @@ const refresh_list_properties = () => {
  * @param {String} document_name
  */
 const append_linked_nodes = (doctype, document_name) => {
+	if (!doctype || !document_name) {
+		frappe.show_alert({
+			message: __('Error parsing fields'),
+			indicator: 'yellow'
+		}, 3);
+		return;
+	}
 	const nodeElement = document.querySelector(`.${document_name}`);
 	if (!nodeElement.isExpanded) {
 		nodeElement.isExpanded = false;
