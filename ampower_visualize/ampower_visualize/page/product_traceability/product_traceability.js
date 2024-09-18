@@ -28,33 +28,45 @@ let previous_doctype_name = 'Select DocType', previous_document_name = 'Select D
  */
 const setup_fields = (page, wrapper) => {
 	let doctype_field = page.add_field({
-		label: previous_doctype_name,	// updating label for now, because setup_fields is called again when doctype is changed
+		label: 'Select DocType',
 		fieldtype: 'Link',
 		fieldname: 'document_type',
 		options: 'DocType',
 		change() {
 			const doctype = doctype_field.get_value();
-			if (doctype !== previous_doctype_name) {	// frappe triggers the onchange callback twice, this check rules out the second callback
+			if (doctype && doctype !== previous_doctype_name) {
 				previous_doctype_name = doctype;
-				page.clear_fields();
-				setup_fields(page, wrapper);
-				let document_field = page.add_field({
-					label: "Select " + doctype_field.get_value(),
-					fieldtype: 'Link',
-					fieldname: 'document',
-					options: doctype,
-					change() {
-						const document_name = document_field.get_value();
-						if (document_name !== previous_document_name) {
-							$(wrapper).find('.top-level-parent').remove();
-							previous_document_name = document_name;
-							append_dynamic_html(doctype, document_name);
-						}
-					}
-				});
+				update_document_field(page, doctype);
 			}
 		}
 	});
+
+	let document_field = page.add_field({
+		label: 'Select Document',
+		fieldtype: 'Link',
+		fieldname: 'document',
+		options: previous_doctype_name,
+		change() {
+			const document_name = document_field.get_value();
+			if (document_name && document_name !== previous_document_name) {
+				previous_document_name = document_name;
+				update_visualization(wrapper, previous_doctype_name, document_name);
+			}
+		}
+	});
+}
+
+const update_document_field = (page, doctype) => {
+	const document_field = page.fields_dict.document;
+	document_field.df.options = doctype;
+	document_field.df.label = `Select ${doctype}`;
+	document_field.refresh();
+	document_field.set_value('');
+}
+
+const update_visualization = (wrapper, doctype, document_name) => {
+	$(wrapper).find('.top-level-parent').remove();
+	append_dynamic_html(doctype, document_name);
 }
 
 /**
@@ -67,10 +79,13 @@ const append_static_html = () => {
 			let startX, startY;
 			let offsetX = 0, offsetY = 0;
 			let scale = 1;
+			const minScale = 0.1;
+			const maxScale = 5;
 			const updateTransform = () => {
-				document.getElementById('canvas').style.transform = \`translate(\${offsetX}px, \${offsetY}px) scale(\${scale})\`;
+				document.querySelector('.tree').style.transform = \`translate(\${ offsetX }px, \${ offsetY }px) scale(\${ scale })\`;
 			}
 			const handleMouseDown = (e) => {
+				if (e.target.tagName.toLowerCase() === 'a') return; // Disable drag when clicking on a link
 				isDragging = true;
 				startX = e.clientX - offsetX;
 				startY = e.clientY - offsetY;
@@ -86,6 +101,24 @@ const append_static_html = () => {
 			const handleMouseUp = () => {
 				isDragging = false;
 				document.getElementById('canvas-container').style.cursor = 'move';
+			}
+
+			const handleWheel = (e) => {
+				e.preventDefault();
+				const delta = e.deltaY > 0 ? 0.9 : 1.1;
+				const newScale = Math.min(Math.max(scale * delta, minScale), maxScale);
+				
+				// Calculate mouse position relative to the tree
+				const rect = document.querySelector('.tree').getBoundingClientRect();
+				const mouseX = e.clientX - rect.left;
+				const mouseY = e.clientY - rect.top;
+				
+				// Adjust offset to zoom towards mouse position
+				offsetX += mouseX * (1 - delta);
+				offsetY += mouseY * (1 - delta);
+
+				scale = newScale;
+				updateTransform();
 			}
 		</script>
 	`);
@@ -120,6 +153,9 @@ const append_dynamic_html = (doctype, document_name) => {
 				document.getElementById('canvas-container').addEventListener('mousemove', handleMouseMove);
 				document.getElementById('canvas-container').addEventListener('mouseup', handleMouseUp);
 				document.getElementById('canvas-container').addEventListener('mouseleave', handleMouseUp);
+				document.getElementById('canvas-container').addEventListener('wheel', handleWheel);
+				document.querySelector('.tree').style.transformOrigin = '0 0';
+				updateTransform();
 				refresh_list_properties();
 			</script>
 			<style>
