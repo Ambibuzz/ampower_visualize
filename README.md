@@ -23,7 +23,7 @@ https://github.com/user-attachments/assets/d653480c-ea0c-405d-8cdc-23d0355a3fdc
 
 4. **Intuitive User Interface**: The interactive tree view provides a user-friendly way to explore complex data structures, making it accessible for both technical and non-technical users.
 
-5. **Flexible Application**: Applicable across various industries and use-cases, from manufacturing and supply chain management to project tracking and financial auditing.
+5. **Generalized Usecases**: Applicable across various industries and use-cases, from manufacturing and supply chain management to project tracking. Works great for every document type built with Frappe/ERPNext.
 
 ## Setup
 
