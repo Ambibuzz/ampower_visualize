@@ -131,7 +131,7 @@ const append_dynamic_html = (doctype, document_name) => {
 						<div class="tree">
 							<ul>
 								<li class="${document_name}">
-									<a onclick="append_linked_nodes('${doctype}', '${document_name}')"><b>${document_name} - ${doctype}</b></a>
+									<a onclick="append_linked_nodes('${doctype}', '${document_name}')"><b>${doctype} - ${document_name}</b></a>
 								</li>
 							</ul>
 						</div>
@@ -199,7 +199,11 @@ const append_linked_nodes = (doctype, document_name) => {
 				const new_item = document.createElement("li");
 				new_item.className = r.message[i].linked_parent;
 				const new_link = document.createElement("a");
-				new_link.innerHTML = `${r.message[i].linked_parent} <br/> ${r.message[i].linked_parenttype}`;
+				new_link.innerHTML = `
+					${r.message[i].linked_parent} <br/> 
+					Type: ${r.message[i].linked_parenttype} <br/> 
+					Created on: ${r.message[i].date.split(' ')[0]}
+				`;
 				new_link.onclick = () => {
 					append_linked_nodes(r.message[i].linked_parenttype, r.message[i].linked_parent);
 				}
