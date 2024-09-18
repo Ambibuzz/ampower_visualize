@@ -56,6 +56,9 @@ const setup_fields = (page, wrapper) => {
 	});
 }
 
+/**
+ * Utility function to update the document fields
+ */
 const update_document_field = (page, doctype) => {
 	const document_field = page.fields_dict.document;
 	document_field.df.options = doctype;
@@ -64,6 +67,9 @@ const update_document_field = (page, doctype) => {
 	document_field.set_value('');
 }
 
+/**
+ * Re-populates the wrapper with dynamic HTML elements
+ */
 const update_visualization = (wrapper, doctype, document_name) => {
 	$(wrapper).find('.top-level-parent').remove();
 	append_dynamic_html(doctype, document_name);
