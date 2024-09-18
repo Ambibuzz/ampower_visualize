@@ -77,6 +77,8 @@ const update_visualization = (wrapper, doctype, document_name) => {
 
 /**
  * Appends static HTML script elements to the document
+ * - includes functions for canvas events
+ * - constant values that shouldn't be redeclared
  */
 const append_static_html = () => {
 	$(global_wrapper).find('.layout-main-section').append(`
