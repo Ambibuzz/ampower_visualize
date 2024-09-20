@@ -141,17 +141,11 @@ const append_static_html = () => {
  */
 const append_dynamic_html = (doctype, document_name) => {
 	if (!doctype) {
-		frappe.show_alert({
-			message: __('No doctype specified'),
-			indicator: 'yellow'
-		}, 2);
+		show_alert("No doctype specified");
 		return;
 	}
 	if (!document_name) {
-		frappe.show_alert({
-			message: __('No document name specified'),
-			indicator: 'yellow'
-		}, 2);
+		show_alert("No document name specified");
 		return;
 	}
 	$(global_wrapper).find('.layout-main-section').append(`
@@ -212,10 +206,7 @@ const refresh_list_properties = () => {
  */
 const append_linked_nodes = (doctype, document_name) => {
 	if (!doctype || !document_name) {
-		frappe.show_alert({
-			message: __('Error parsing fields'),
-			indicator: 'yellow'
-		}, 3);
+		show_alert("Error parsing fields.", "red")
 		return;
 	}
 	const nodeElement = document.querySelector(`.${document_name}`);
@@ -231,10 +222,7 @@ const append_linked_nodes = (doctype, document_name) => {
 		},
 		callback: function (r) {
 			if (!r.message.length) {
-				frappe.show_alert({
-					message: __('Node cannot be expanded further.'),
-					indicator: 'red'
-				}, 2);
+				show_alert("Node cannot be expanded further.", "red");
 				return;
 			}
 			const new_list = document.createElement("ul");	// creates a new list and populates it with list items (links to documents)
@@ -257,6 +245,18 @@ const append_linked_nodes = (doctype, document_name) => {
 			$(global_wrapper).find(`.${document_name}`).append(new_list);
 			nodeElement.isExpanded = true;
 			refresh_list_properties();	// sets properties to newly added list items
-		}
+		},
+		freeze: true,
+		freeze_message: __("Fetching linked documents...")
 	});
+}
+
+/**
+ * Utility function to call frappe alerts
+ */
+const show_alert = (message, indicator = "yellow", time = 3) => {	// default time and indicators set
+	frappe.show_alert({
+		message: __(message),
+		indicator: indicator
+	}, time);
 }
