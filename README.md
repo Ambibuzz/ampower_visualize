@@ -33,6 +33,12 @@ It can be used for the following use-cases:
     - The link on each node can be clicked to navigate to that particular document in Frappe.
 
 ## Screenshots
+![image](https://github.com/user-attachments/assets/a57cfc80-6bba-4ad0-b365-a39ec368df01)
+
+![image](https://github.com/user-attachments/assets/db3e5e41-9bb2-4b27-aba2-9e13edc66873)
+
+
+https://github.com/user-attachments/assets/a7f163af-ff5e-4380-9b52-4bca18440465
 
 
 ### Key functions:
