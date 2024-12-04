@@ -33,7 +33,7 @@ const setup_fields = (page, wrapper) => {
 		fieldname: 'document_type',
 		options: 'DocType',
 		filters: {
-			name: ["in", ["Sales Order", "Purchase Order", "Sales Invoice", "Purchase Order", "Purchase Invoice", "Material Request", "Delivery Note"]]
+			name: ["in", ["Sales Order"]]
 		},
 		change() {
 			const doctype = doctype_field.get_value();
@@ -92,53 +92,7 @@ const update_visualization = (wrapper, doctype, document_name) => {
  */
 const append_static_html = () => {
 	$(global_wrapper).find('.layout-main-section').append(`
-		<script>
-			let isDragging = false;
-			let startX, startY;
-			let offsetX = 0, offsetY = 0;
-			let scale = 1;
-			const minScale = 0.1;
-			const maxScale = 5;
-			const updateTransform = () => {
-				document.querySelector('.tree').style.transform = \`translate(\${ offsetX }px, \${ offsetY }px) scale(\${ scale })\`;
-			}
-			const handleMouseDown = (e) => {
-				if (e.target.tagName.toLowerCase() === 'a') return; // Disable drag when clicking on a link
-				isDragging = true;
-				startX = e.clientX - offsetX;
-				startY = e.clientY - offsetY;
-				document.getElementById('canvas-container').style.cursor = 'grabbing';
-			}
-			const handleMouseMove = (e) => {
-				if (isDragging) {
-					offsetX = e.clientX - startX;
-					offsetY = e.clientY - startY;
-					updateTransform();
-				}
-			}
-			const handleMouseUp = () => {
-				isDragging = false;
-				document.getElementById('canvas-container').style.cursor = 'move';
-			}
-
-			const handleWheel = (e) => {
-				e.preventDefault();
-				const delta = e.deltaY > 0 ? 0.9 : 1.1;
-				const newScale = Math.min(Math.max(scale * delta, minScale), maxScale);
-				
-				// Calculate mouse position relative to the tree
-				const rect = document.querySelector('.tree').getBoundingClientRect();
-				const mouseX = e.clientX - rect.left;
-				const mouseY = e.clientY - rect.top;
-				
-				// Adjust offset to zoom towards mouse position
-				offsetX += mouseX * (1 - delta);
-				offsetY += mouseY * (1 - delta);
-
-				scale = newScale;
-				updateTransform();
-			}
-		</script>
+		<script src="https://d3js.org/d3.v7.min.js"/>
 	`);
 }
 
@@ -161,50 +115,10 @@ const append_dynamic_html = (doctype, document_name) => {
 	$(global_wrapper).find('.layout-main-section').append(`
 		<div class="top-level-parent">
 			<script>
-				document.getElementById('canvas-container').addEventListener('mousedown', handleMouseDown);
-				document.getElementById('canvas-container').addEventListener('mousemove', handleMouseMove);
-				document.getElementById('canvas-container').addEventListener('mouseup', handleMouseUp);
-				document.getElementById('canvas-container').addEventListener('mouseleave', handleMouseUp);
-				document.getElementById('canvas-container').addEventListener('wheel', handleWheel);
-				document.querySelector('.tree').style.transformOrigin = '0 0';
-				updateTransform();
-				refresh_list_properties();
+				configure_query_url('${doctype}', '${document_name}');
 			</script>
-			<style>
-				.layer-wrapper{display:flex;align-items:center;justify-content:center;margin-top:5vh}#canvas-container{width:1240px;height:640px;background-color:#fff;border:1px solid #000;box-shadow:0 0 10px rgb(0 0 0 / .1);overflow:hidden;cursor:move}#canvas{position:relative;width:9999px;height:9999px}.tree{width:999999px;height:9999px}.tree ul{padding-top:20px;position:relative;transition:.2s}.tree li{display:inline-table;text-align:center;color:#000;list-style-type:none;position:relative;padding:10px;transition:.2s}.tree li::before,.tree li::after{content:'';position:absolute;top:0;right:50%;border-top:1px solid #000;width:51%;height:10px;}.tree li::after{right:auto;left:50%;border-left:1px solid #000}.tree li:only-child::after,.tree li:only-child::before{display:none}.tree li:only-child{padding-top:0}.tree li:first-child::before,.tree li:last-child::after{border:0 none}.tree li:last-child::before{border-right:1px solid #000;border-radius:0 5px 0 0;-webkit-border-radius:0 5px 0 0;-moz-border-radius:0 5px 0 0}.tree li:first-child::after{border-radius:5px 0 0 0;-webkit-border-radius:5px 0 0 0;-moz-border-radius:5px 0 0 0}.tree ul ul::before{content:'';position:absolute;top:0;left:50%;border-left:1px solid #000;width:0;height:20px}.tree li a{border:1px solid #000;padding:10px;display:inline-grid;border-radius:5px;text-decoration-line:none;border-radius:5px;transition:.2s;background-color:#ED9226;}.tree li a span{border:1px solid #000;border-radius:5px;color:#000;padding:8px;font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:500}.tree li a:hover,.tree li a:hover i,.tree li a:hover span,.tree li a:hover+ul li a{background-color:#005ce6;border:1px solid #000;color:#fff}.tree li a:hover+ul li::after,.tree li a:hover+ul li::before,.tree li a:hover+ul::before,.tree li a:hover+ul ul::before{border-color:#ED9226}.tree>ul{display:block}.tree ul ul{display:none}.tree ul ul.active{display:block}
-			</style>
-			<div class="layer-wrapper">
-				<div id="canvas-container">
-					<div id="canvas">
-						<div class="tree">
-							<ul>
-								<li class="${document_name}">
-									<a onclick="configure_query_url('${doctype}', '${document_name}')"><b>${doctype} - ${document_name}</b></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	`);
-}
-
-/**
- * Refreshes the list properties for each list item on the canvas
- */
-const refresh_list_properties = () => {
-	const toggle_links = document.querySelectorAll(".tree a");
-	toggle_links.forEach(link => {
-		link.addEventListener("click", function (event) {
-			event.preventDefault();
-			const childUl = this.nextElementSibling;
-			if (childUl) {
-				childUl.classList.toggle("active");
-				this.classList.toggle("expanded");
-			}
-		});
-	});
 }
 
 /**
@@ -222,99 +136,318 @@ const configure_query_url = (doctype, document_name) => {
 		case 'Sales Order':
 			method_type += 'get_sales_order_links';
 			break;
-		case 'Material Request':
-			method_type += 'get_material_request_links';
-			break;
-		case 'Purchase Order':
-			method_type += 'get_purchase_order_links';
-			break;
 		default:
 			notify("This is the last node.", "red", 5);
 			return;
 	}
-	let valid_document_name = modify_escape_sequence(document_name);
-	const node_elements = document.querySelectorAll(`.${valid_document_name}`);
-	if (node_elements.length === 0) {
-		notify("No matching elements found for the document name.", "red");
-		return;
-	}
-	node_elements.forEach(node_element => {
-		const existingList = node_element.querySelector("ul.active");
-		if (existingList) {
-			existingList.remove();
-		}
-		append_nodes_to_tree(document_name, method_type, node_element);
-	});
+	const node_element = document.querySelector(`.top-level-parent`);
+	get_graph_data(document_name, method_type, node_element);
 }
 
 /**
- * Appends child nodes to tree on the canvas.
- * @param {String} document_name 
- * @param {String} method_type 
- * @param {DOM} node_element 
+ * Fetches data from the backend function, formats it into a JSON that can be consumed directly by the library functions
+ * @param {String} document_name
+ * @param {String} method_type
+ * @param {DOM Element} node_element
  */
-const append_nodes_to_tree = (document_name, method_type, node_element) => {
+const get_graph_data = (document_name, method_type, node_element) => {
 	frappe.call({
 		method: method_type,
 		args: { document_name: document_name },
 		callback: function (r) {
-			if (!r.message.length) {
-				notify("Node cannot be expanded further.", "red");
+			if (!r.message || r.message.length === 0) {
+				notify("Invalid data format or no items to display.", "red");
 				return;
 			}
-			if (are_all_objects_empty(r.message)) {
-				notify("No connections found.", "red");
-				return;
-			}
-			const new_list = document.createElement("ul");
-			new_list.className = "active";
-			for (let i = 0; i < r.message.length; i++) {
-				if (Object.keys(r.message[i]).length === 0 && r.message[i].constructor === Object) {
-					// Skip empty JSON objects returned from the backend
-					continue;
-				}
-				Object.keys(r.message[i]).forEach(key => {
-					const document_item = document.createElement("li");
-					document_item.className = key;
-					const table = document.createElement("table");
-					table.innerHTML = `
-						<thead>
-							<tr>
-								<th style="border: 1px solid black; padding: 5px;">Item Code</th>
-								<th style="border: 1px solid black; padding: 5px;">Quantity</th>
-							</tr>
-						</thead>
-						<tbody>
-						</tbody>
-					`;
-					r.message[i][key].forEach(item => {
-						const row = document.createElement("tr");
-						row.innerHTML = `
-							<td style="border: 1px solid black; padding: 5px;">${item.item_code}</td>
-							<td style="border: 1px solid black; padding: 5px;">${item.quantity}</td>
-						`;
-						table.querySelector("tbody").appendChild(row);
+
+			const data = r.message.items;
+			const graph_data = { nodes: [], links: [] };
+			const existing_nodes = new Set();
+
+			data.forEach((item) => {
+				const parent_node_id = `${item.item_code}-${item.sales_order_qty}`;
+				if (!existing_nodes.has(parent_node_id)) {
+					graph_data.nodes.push({
+						id: parent_node_id,
+						label: `${item.item_name}\n(${item.item_code})`,
+						type: 'sales_order_item',
+						qty: item.sales_order_qty,
+						is_parent: true,
+						expanded: false
 					});
-					const new_link = document.createElement("a");
-					new_link.innerHTML = `
-						Type: ${r.message[i][key][0].parenttype} <br/>
-						Document: ${key}
-					`;
-					new_link.onclick = () => {
-						configure_query_url(r.message[i][key][0].parenttype, key);
-					};
-					new_link.appendChild(table);
-					document_item.appendChild(new_link);
-					new_list.appendChild(document_item);
+					existing_nodes.add(parent_node_id);
+				}
+
+				const add_connections = (connections, type) => {
+					connections.forEach(connection => {
+						const child_node_id = connection.unique_id;
+
+						if (!existing_nodes.has(child_node_id)) {
+							graph_data.nodes.push({
+								id: child_node_id,
+								label: `${connection[type]}`,
+								type: type,
+								qty: connection.qty,
+								status: connection.status,
+								is_parent: false
+							});
+							existing_nodes.add(child_node_id);
+						}
+
+						graph_data.links.push({
+							source: parent_node_id,
+							target: child_node_id
+						});
+					});
+				};
+
+				add_connections(item.sales_invoices, "sales_invoice");
+				add_connections(item.delivery_notes, "delivery_note");
+				add_connections(item.material_requests, "material_request");
+				add_connections(item.purchase_orders, "purchase_order");
+			});
+
+			const root_node_id = "root";
+			if (!existing_nodes.has(root_node_id)) {
+				graph_data.nodes.push({
+					id: root_node_id,
+					label: document_name,
+					type: "root",
+					qty: '',
+					is_parent: true,
+					expanded: false,
 				});
+				existing_nodes.add(root_node_id);
 			}
-			node_element.appendChild(new_list);
-			refresh_list_properties();
+
+			const connectedNodeIds = new Set(graph_data.links.map(link => link.target));
+			graph_data.nodes.forEach(node => {
+				if (!connectedNodeIds.has(node.id) && node.id !== root_node_id) {
+					graph_data.links.push({
+						source: root_node_id,
+						target: node.id
+					});
+				}
+			});
+
+			visualize_graph(graph_data, node_element);
 		},
 		freeze: true,
 		freeze_message: __("Fetching linked documents...")
 	});
-}
+};
+
+/**
+ * Creates a graph using the JSON data and appends it to the root node
+ * @param {Dict} graph_data
+ * @param {DOM Element} node_element
+ */
+const visualize_graph = (graph_data, node_element) => {
+	const width = 1256, height = 720;
+	d3.select(node_element).select("svg").remove();
+
+	const svg = d3.select(node_element)
+		.append("svg")
+		.attr("width", width)
+		.attr("height", height)
+		.call(
+			d3.zoom()
+				.scaleExtent([0.1, 3])
+				.on("zoom", event => {
+					g.attr("transform", event.transform);
+				})
+		)
+		.append("g");
+
+	const g = svg.append("g");
+
+	const parentNodes = graph_data.nodes.filter(node => node.is_parent);
+
+	const nodeColors = {
+		'sales_order_item': '#ff59d0',
+		'sales_invoice': '#3498db',
+		'delivery_note': '#e74c3c',
+		'material_request': '#f39c12',
+		'purchase_order': '#2ecc71',
+		'purchase_invoice': '#9b59b6',
+		'purchase_receipt': '#34495e',
+		'root': '#b0b336'
+	};
+
+	const nodeSizes = {
+		'sales_order_item': 60,
+		'default': 36
+	};
+
+	const legendData = [
+		{ type: 'root', label: 'Root Document' },
+		{ type: 'sales_order_item', label: 'Sales Order Item' },
+		{ type: 'sales_invoice', label: 'Sales Invoice' },
+		{ type: 'delivery_note', label: 'Delivery Note' },
+		{ type: 'material_request', label: 'Material Request' },
+		{ type: 'purchase_order', label: 'Purchase Order' },
+		{ type: 'purchase_invoice', label: 'Purchase Invoice' },
+		{ type: 'purchase_receipt', label: 'Purchase Receipt' }
+	];
+
+	const legendGroup = svg.append("g")
+		.attr("transform", `translate(20, 10)`);
+
+	const legendItems = legendGroup.selectAll(".legend-item")
+		.data(legendData)
+		.enter()
+		.append("g")
+		.attr("transform", (d, i) => `translate(${i * 150}, 0)`);
+
+	legendItems.append("rect")
+		.attr("width", 20)
+		.attr("height", 20)
+		.attr("fill", d => nodeColors[d.type] || '#69b3a2')
+
+	legendItems.append("text")
+		.attr("x", 25)
+		.attr("y", 15)
+		.text(d => d.label)
+		.style("fill", "#555555")
+		.style("font-size", "12px");
+
+	const format_document_url = (base_url, type, label) => {
+		let formatted_label, document_name;
+		if (type === "root") {
+			formatted_label = "sales-order";
+		}
+		else if (type === "sales_order_item") {
+			formatted_label = "item";
+		}
+		else formatted_label = type.replace(/_/g, '-');
+		if (type === "sales_order_item") {
+			document_name = label.match(/\((.*?)\)/)[1];
+		}
+		else document_name = label.split(' ')[0];
+		return `${base_url}/app/${formatted_label}/${document_name}`;
+	}
+
+	const simulation = d3.forceSimulation(graph_data.nodes)
+		.force("link", d3.forceLink(graph_data.links)
+			.id(d => d.id)
+			.distance(300)
+		)
+		.force("charge", d3.forceManyBody()
+			.strength(-100)
+		)
+		.force("center", d3.forceCenter(width / 2, height / 2))
+		.force("parent_repulsion", d => {
+			for (let i = 0; i < graph_data.nodes.length; i++) {
+				if (!graph_data.nodes[i].is_parent) {
+					for (let j = 0; j < parentNodes.length; j++) {
+						const parent = parentNodes[j];
+						const node = graph_data.nodes[i];
+						
+						const dx = node.x - parent.x;
+						const dy = node.y - parent.y;
+						const distance = Math.sqrt(dx * dx + dy * dy);
+						
+						const strength = 0.5;
+						node.vx += dx / distance * strength;
+						node.vy += dy / distance * strength;
+					}
+				}
+			}
+		})
+		.alphaDecay(0)
+		.alphaMin(0.001)
+		.alphaTarget(0.3);
+
+	const link = g.append("g")
+		.selectAll("line")
+		.data(graph_data.links)
+		.enter()
+		.append("g");
+
+		link.append("line")
+		.attr("stroke", "#696C71")
+		.attr("stroke-width", d => d.source.is_parent ? 2.5 : 1.5)
+		.attr("stroke-opacity", 0.6);
+
+		link.append("text")
+		.attr("text-anchor", "end")
+		.style("font-size", "14px")
+		.style("fill", "#696C71")
+		.text(d => `${d.target.status ? d.target.status + " [Qty: " + d.target.qty + "]" : ''}`);
+
+	const node = g.append("g")
+		.selectAll("rect")
+		.data(graph_data.nodes)
+		.enter()
+		.append("rect")
+		.attr("width", d => d.is_parent ? nodeSizes['sales_order_item'] : nodeSizes['default'])
+		.attr("height", d => d.is_parent ? nodeSizes['sales_order_item'] : nodeSizes['default'])
+		.attr("fill", d => nodeColors[d.type] || '#69b3a2')
+		.attr("x", d => d.x - (d.is_parent ? nodeSizes['sales_order_item'] : nodeSizes['default']) / 2)
+		.attr("y", d => d.y - (d.is_parent ? nodeSizes['sales_order_item'] : nodeSizes['default']) / 2)
+		.call(d3.drag()
+			.on("start", dragstarted)
+			.on("drag", dragged)
+			.on("end", dragended));
+
+	const label = g.append("g")
+		.selectAll("a")
+		.data(graph_data.nodes)
+		.enter()
+		.append("a")
+		.attr("xlink:href", d => format_document_url(window.location.origin, d.type, d.label))
+		.attr("target", "_blank")
+		.append("text")
+		.text(d => d.label)
+		.style("font-size", d => d.is_parent ? "12px" : "10px")
+		.style("font-weight", d => d.is_parent ? "bold" : "normal")
+		.style("fill", d => "#000")
+		.attr("text-anchor", "middle")
+		.attr("alignment-baseline", "middle");
+
+	simulation.on("tick", () => {
+		link
+			.attr("x1", d => d.source.x)
+			.attr("y1", d => d.source.y)
+			.attr("x2", d => d.target.x)
+			.attr("y2", d => d.target.y);
+		
+		link.selectAll("line")
+			.attr("x1", d => d.source.x)
+			.attr("y1", d => d.source.y)
+			.attr("x2", d => d.target.x)
+			.attr("y2", d => d.target.y);
+
+		link.selectAll("text")
+			.attr("x", d => (d.source.x + d.target.x) / 2)
+			.attr("y", d => (d.source.y + d.target.y) / 2);
+
+		node
+			.attr("x", d => d.x - (d.is_parent ? nodeSizes['sales_order_item'] : nodeSizes['default']) / 2)
+			.attr("y", d => d.y - (d.is_parent ? nodeSizes['sales_order_item'] : nodeSizes['default']) / 2);
+
+		label
+			.attr("x", d => d.x)
+			.attr("y", d => d.y);
+	});
+
+	function dragstarted(event, d) {
+		if (!event.active) simulation.alphaTarget(0.3).restart();
+		d.fx = d.x;
+		d.fy = d.y;
+	}
+
+	function dragged(event, d) {
+		d.fx = event.x;
+		d.fy = event.y;
+	}
+
+	function dragended(event, d) {
+		if (!event.active) simulation.alphaTarget(0);
+		d.fx = null;
+		d.fy = null;
+	}
+};
 
 /**
  * UTILITY FUNCTIONS
@@ -326,16 +459,4 @@ const notify = (message, indicator = "yellow", time = 3) => {	// default time an
 		message: __(message),
 		indicator: indicator
 	}, time);
-}
-
-// Checks if all child-objects are empty
-const are_all_objects_empty = (obj) => {
-	return Object.values(obj).every(
-		value => typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === 0
-	);
-}
-
-// Adds back-slashes to the document name as query-selector gives error without escape sequence
-const modify_escape_sequence = (selector) => {
-	return selector.replace(/([!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~])/g, '\\$1');
 }

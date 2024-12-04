@@ -1,57 +1,78 @@
 # Ampower Visualize
 
-Ampower Visualize is a powerful tool designed to enhance product traceability and visualize document relationships within your Frappe/ERPNext system. This application provides an interactive, zoomable, and draggable tree view of linked documents, allowing users to explore and understand complex document hierarchies with ease.
+Ampower Visualize is a powerful tool designed to enhance product traceability and visualize document relationships within your Frappe/ERPNext system. This application provides an interactive, zoomable, and draggable graph view of linked documents, allowing users to explore and understand complex document hierarchies with ease.
 
 Empower your business with clear, interactive document traceability using Ampower Visualize!
 
-https://github.com/user-attachments/assets/d653480c-ea0c-405d-8cdc-23d0355a3fdc
+## Why Ampower Visualize?
 
-## Features
+This tool is built for users who deal with orders placed on a daily basis and often face challenges in tracing the status, quantities, or items within a Sales Order. Ampower Visualize bridges this gap by offering an intuitive, visual representation of linked documents, making it easier for businesses to streamline operations and improve traceability.
 
-- **Interactive Document Tree**: Visualize the relationships between different documents in a hierarchical tree structure.
-- **Dynamic Expansion**: Click on any node to dynamically load and display its linked documents.
-- **Zoom and Pan**: Easily navigate large document trees with smooth zooming and panning functionality.
-- **Flexible Document Selection**: Choose any DocType and specific document as the starting point for your visualization.
+It can be used for the following use-cases:
 
-## Why Use Ampower Visualize?
+1. **Enhanced Traceability**: Quickly trace the origin and flow of products or documents, improving quality control traceability.
+2. **Improved Decision Making**: Visualize relationships for better-informed decisions.
+3. **Efficient Troubleshooting**: Identify dependencies and resolve issues faster.
+4. **User-Friendly Interface**: Accessible for both technical and non-technical users.
+5. **Generalized Use Cases**: Applicable across industries for diverse document types.
 
-1. **Enhanced Traceability**: Quickly trace the origin and flow of products or documents through your system, improving quality control and audit processes.
+## How It Works
 
-2. **Improved Decision Making**: Gain a clear, visual understanding of document relationships, enabling better-informed business decisions.
+1. **Installation**: Install the Ampower Visualize app in your Frappe/ERPNext instance. See [reference](https://discuss.frappe.io/t/install-custom-app-from-github/23458).
+2. **Navigate**: Access the "Product Traceability" page in your system.
+3. **Select and Visualize**:
+    - Select a DocType (e.g., Sales Order) from the dropdown menu.
+    - Choose a specific document to begin visualization.
+    - Ensure the document hierarchy exists (e.g., a Sales Invoice must be created from a Sales Order) for accurate visualization.
+4. **Interactive Exploration**:
+    - The graph starts with a root node as the center representing the selected document.
+    - Use zoom and pan to navigate large document hierarchies.
+    - The meaning of each node can be read from the legend created on top of the graph.
+    - Every node represents the document where a particular item is referenced.
+    - The edge of each node represents the status of the parent document where the reference is found, along with the quantity of the item.
+    - The link on each node can be clicked to navigate to that particular document in Frappe.
 
-3. **Efficient Troubleshooting**: Easily identify dependencies and connections between documents, streamlining the process of resolving issues or discrepancies.
+## Screenshots
+![image](https://github.com/user-attachments/assets/a57cfc80-6bba-4ad0-b365-a39ec368df01)
 
-4. **Intuitive User Interface**: The interactive tree view provides a user-friendly way to explore complex data structures, making it accessible for both technical and non-technical users.
+![image](https://github.com/user-attachments/assets/db3e5e41-9bb2-4b27-aba2-9e13edc66873)
 
-5. **Generalized Usecases**: Applicable across various industries and use-cases, from manufacturing and supply chain management to project tracking. Works great for every document type built with Frappe/ERPNext.
 
-## Setup
+https://github.com/user-attachments/assets/a7f163af-ff5e-4380-9b52-4bca18440465
 
-1. Install the Ampower Visualize app in your Frappe/ERPNext instance.
-2. Navigate to the "Product Traceability" page in your system.
 
-## Usage
+### Key functions:
+1. **`append_nodes_to_tree`**:
+   - Fetches linked documents from the backend using `frappe.call`.
+   - Constructs a JSON structure with `nodes` and `links` for D3.js.
 
-1. Select a DocType from the dropdown menu.
-2. Choose a specific document of the selected DocType.
-3. The initial node of the document tree will appear.
-4. Click on any node to expand it and view linked documents.
-5. Use your mouse wheel to zoom in and out of the tree.
-6. Click and drag anywhere on the canvas to pan and explore different parts of the tree.
+2. **`visualize_graph`**:
+   - Builds the graph using D3.js:
+     - **Nodes**: Represent documents (e.g., Sales Orders, Sales Invoices).
+     - **Links**: Define relationships between documents.
+   - Adds zoom, pan, and drag functionality for intuitive navigation.
+   - Uses force-directed layout for dynamic positioning.
 
-## Technical Details
+### Customizations:
 
-- Built on the Frappe framework
-- Utilizes custom JavaScript for interactive functionality
-- Implements CSS-based tree structure for efficient rendering
+Ampower Visualize uses **D3.js**, a powerful JavaScript library, to render the interactive document graph. The library consumes JSON data from the backend and creates a graphical representation of the basis of this input.
+
+- Node colors and sizes vary by document type.
+- A legend helps users identify node types and their significance.
+- Links include labels indicating document status and quantities for respective items.
+
+## Future Scope
+
+- **Generalized Visualization**: Extend the app for additional DocTypes beyond Sales Orders.
+- **Batch Traceability**: Implement batch and lot-level traceability to track inventory movements.
 
 ## Contributing
 
-We welcome contributions to Ampower Visualize! Please read our contributing guidelines before submitting pull requests.
+We welcome contributions! Check out the GitHub repository for guidelines on how to contribute.
 
 ## Support
 
-If you encounter any issues or have questions about Ampower Visualize, please file an issue on our GitHub repository or contact our support team.
+Encountered an issue? File a ticket on the GitHub repository.
 
 ## License
 
