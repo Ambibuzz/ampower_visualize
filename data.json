@@ -1,0 +1,2128 @@
+{
+    "serial_and_batch_bundle": {
+        "name": "SABB-00000003",
+        "docstatus": 1
+    },
+    "batches": [
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        },
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        },
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        },
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        },
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        },
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        },
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        },
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        },
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        },
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        },
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        },
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        },
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        },
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        },
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        },
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        },
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        },
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        },
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        },
+        {
+            "batch_no": "SKUB002",
+            "batch_qty": 1.0,
+            "serial_numbers": [
+                {
+                    "serial_no": "SKUS00060",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00060-SKU020-SKUS00060"
+                },
+                {
+                    "serial_no": "SKUS00059",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00059-SKU020-SKUS00059"
+                },
+                {
+                    "serial_no": "SKUS00058",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00058-SKU020-SKUS00058"
+                },
+                {
+                    "serial_no": "SKUS00057",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00057-SKU020-SKUS00057"
+                },
+                {
+                    "serial_no": "SKUS00056",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00056-SKU020-SKUS00056"
+                },
+                {
+                    "serial_no": "SKUS00055",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00055-SKU020-SKUS00055"
+                },
+                {
+                    "serial_no": "SKUS00054",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00054-SKU020-SKUS00054"
+                },
+                {
+                    "serial_no": "SKUS00053",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00053-SKU020-SKUS00053"
+                },
+                {
+                    "serial_no": "SKUS00052",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00052-SKU020-SKUS00052"
+                },
+                {
+                    "serial_no": "SKUS00051",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00051-SKU020-SKUS00051"
+                },
+                {
+                    "serial_no": "SKUS00050",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00050-SKU020-SKUS00050"
+                },
+                {
+                    "serial_no": "SKUS00049",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00049-SKU020-SKUS00049"
+                },
+                {
+                    "serial_no": "SKUS00048",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00048-SKU020-SKUS00048"
+                },
+                {
+                    "serial_no": "SKUS00047",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00047-SKU020-SKUS00047"
+                },
+                {
+                    "serial_no": "SKUS00046",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00046-SKU020-SKUS00046"
+                },
+                {
+                    "serial_no": "SKUS00045",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00045-SKU020-SKUS00045"
+                },
+                {
+                    "serial_no": "SKUS00044",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00044-SKU020-SKUS00044"
+                },
+                {
+                    "serial_no": "SKUS00043",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00043-SKU020-SKUS00043"
+                },
+                {
+                    "serial_no": "SKUS00042",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00042-SKU020-SKUS00042"
+                },
+                {
+                    "serial_no": "SKUS00041",
+                    "item_code": "SKU020",
+                    "unique_id": "SKUS00041-SKU020-SKUS00041"
+                }
+            ]
+        }
+    ]
+}
