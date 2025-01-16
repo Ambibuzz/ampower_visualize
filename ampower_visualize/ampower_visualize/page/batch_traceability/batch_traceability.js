@@ -58,7 +58,7 @@ const get_batch_data = (sabb_name) => {
     frappe.call({
         method: 'ampower_visualize.ampower_visualize.page.batch_traceability.batch_traceability.get_serial_and_batch_bundle_links',
         args: { sabb_name: sabb_name },
-        callback: function(r) {
+        callback: function (r) {
             if (!r.message) {
                 notify("Invalid data format or no items to display.", "red");
                 return;
@@ -79,7 +79,7 @@ const get_batch_data = (sabb_name) => {
 
             data.batches.forEach(batch => {
                 const batch_node_id = `${batch.batch_no}-${batch.batch_qty}`;
-                
+
                 if (!existing_nodes.has(batch_node_id)) {
                     graph_data.nodes.push({
                         id: batch_node_id,
@@ -93,7 +93,8 @@ const get_batch_data = (sabb_name) => {
 
                 graph_data.links.push({
                     source: sabb_node_id,
-                    target: batch_node_id
+                    target: batch_node_id,
+                    warehouse: batch.current_warehouse
                 });
 
                 batch.serial_numbers.forEach(serial => {
@@ -109,7 +110,8 @@ const get_batch_data = (sabb_name) => {
 
                     graph_data.links.push({
                         source: batch_node_id,
-                        target: serial.unique_id
+                        target: serial.unique_id,
+                        warehouse: batch.current_warehouse
                     });
                 });
             });
@@ -120,6 +122,7 @@ const get_batch_data = (sabb_name) => {
         freeze_message: __("Fetching batch data...")
     });
 };
+
 
 const visualize_graph = (graph_data, node_element) => {
     const width = 1256, height = 720;
@@ -139,6 +142,19 @@ const visualize_graph = (graph_data, node_element) => {
         .append("g");
 
     const g = svg.append("g");
+
+    svg.append("defs").append("marker")
+        .attr("id", "arrowhead")
+        .attr("viewBox", "0 -5 10 10")
+        .attr("refX", 20)
+        .attr("refY", 0)
+        .attr("markerWidth", 8)
+        .attr("markerHeight", 8)
+        .attr("orient", "auto")
+        .append("path")
+        .attr("d", "M0,-5L10,0L0,5")
+        .attr("fill", "#696C71");
+
 
     const nodeColors = {
         'sabb': '#b0b336',
@@ -202,7 +218,6 @@ const visualize_graph = (graph_data, node_element) => {
         }
     }
 
-    // Custom force to push serial numbers away from SABB and batch nodes
     const forceSerialRepulsion = () => {
         return (alpha) => {
             graph_data.nodes.forEach(nodeI => {
@@ -212,7 +227,7 @@ const visualize_graph = (graph_data, node_element) => {
                             const dx = nodeI.x - nodeJ.x;
                             const dy = nodeI.y - nodeJ.y;
                             const distance = Math.sqrt(dx * dx + dy * dy);
-                            if (distance < 300) { // Repulsion radius
+                            if (distance < 300) {
                                 const force = (300 - distance) * alpha * 0.5;
                                 nodeI.x += dx * force / distance;
                                 nodeI.y += dy * force / distance;
@@ -231,7 +246,6 @@ const visualize_graph = (graph_data, node_element) => {
         )
         .force("charge", d3.forceManyBody()
             .strength(node => {
-                // Stronger repulsion for serial numbers
                 if (node.type === 'serial') return -300;
                 if (node.type === 'sabb') return -400;
                 return -200;
@@ -239,24 +253,42 @@ const visualize_graph = (graph_data, node_element) => {
         )
         .force("center", d3.forceCenter(width / 2, height / 2))
         .force("serialRepulsion", forceSerialRepulsion())
-        // Add collision force to prevent overlap
         .force("collision", d3.forceCollide().radius(node => nodeSizes[node.type] * 0.75))
         .alphaDecay(0.01)
         .alphaTarget(0.3);
 
     const link = g.append("g")
-        .selectAll("line")
+        .selectAll("g")
         .data(graph_data.links)
         .enter()
-        .append("line")
+        .append("g");
+
+    const linkPath = link.append("path")
         .attr("stroke", "#696C71")
         .attr("stroke-width", d => {
             const sourceType = d.source.type || d.source.type;
             const targetType = d.target.type || d.target.type;
             return ((sourceType === 'sabb' && targetType === 'batch') ||
-                   (sourceType === 'batch' && targetType === 'sabb')) ? 2.5 : 1.5;
+                (sourceType === 'batch' && targetType === 'sabb')) ? 2.5 : 1.5;
         })
-        .attr("stroke-opacity", 0.6);
+        .attr("stroke-opacity", 0.6)
+        .attr("fill", "none")
+        .attr("marker-end", "url(#arrowhead)");
+
+    const linkLabel = link.append("text")
+        .attr("dy", -5)
+        .attr("text-anchor", "middle")
+        .style("font-size", "10px")
+        .style("fill", "#555")
+        .text(d => {
+            const sourceType = d.source.type;
+            const targetType = d.target.type;
+            if ((sourceType === 'sabb' && targetType === 'batch') ||
+                (sourceType === 'batch' && targetType === 'sabb')) {
+                return d.warehouse || "";
+            }
+            return "";
+        });
 
     const node = g.append("g")
         .selectAll("rect")
@@ -289,11 +321,17 @@ const visualize_graph = (graph_data, node_element) => {
         .attr("alignment-baseline", "middle");
 
     simulation.on("tick", () => {
-        link
-            .attr("x1", d => d.source.x)
-            .attr("y1", d => d.source.y)
-            .attr("x2", d => d.target.x)
-            .attr("y2", d => d.target.y);
+        linkPath.attr("d", d => {
+            const dx = d.target.x - d.source.x;
+            const dy = d.target.y - d.source.y;
+            return `M${d.source.x},${d.source.y} L${d.target.x},${d.target.y}`;
+        });
+
+        linkLabel.attr("transform", d => {
+            const midX = (d.source.x + d.target.x) / 2;
+            const midY = (d.source.y + d.target.y) / 2;
+            return `translate(${midX},${midY})`;
+        });
 
         node
             .attr("x", d => d.x - nodeSizes[d.type] / 2)
@@ -303,6 +341,7 @@ const visualize_graph = (graph_data, node_element) => {
             .attr("x", d => d.x)
             .attr("y", d => d.y);
     });
+
 
     function dragstarted(event, d) {
         if (!event.active) simulation.alphaTarget(0.3).restart();
