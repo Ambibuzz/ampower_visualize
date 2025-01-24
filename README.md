@@ -4,6 +4,8 @@ AmPower Visualize is a powerful tool designed to enhance product traceability an
 
 Empower your business with clear, interactive document traceability using AmPower Visualize!
 
+![gif](https://github.com/user-attachments/assets/0a3c3664-3fcc-4636-b721-2f567a68e127)
+
 ## Why AmPower Visualize?
 
 This tool is built for users who deal with orders placed on a daily basis and often face challenges in tracing the status, quantities, or items within a Sales Order. AmPower Visualize bridges this gap by offering an intuitive, visual representation of linked documents, making it easier for businesses to streamline operations and improve traceability.
@@ -15,6 +17,31 @@ It can be used for the following use-cases:
 3. **Efficient Troubleshooting**: Identify dependencies and resolve issues faster.
 4. **User-Friendly Interface**: Accessible for both technical and non-technical users.
 5. **Generalized Use Cases**: Applicable across industries for diverse document types.
+
+## Visualization Modes
+AmPower Visualize offers three powerful visualization modes to cater to different traceability needs:
+
+#### Document Level Visualization
+Creates a hierarchical tree view of sales orders and their connected documents
+Shows the complete document flow with child tables containing item information
+Perfect for understanding overall document relationships and tracking order processing
+
+![image](https://github.com/user-attachments/assets/27ef9af0-77b2-410e-b4fe-5c2988f4d17a)
+
+#### Item Level Visualization
+Generates detailed graphs showing parent-child relationships between items
+Displays how items are linked across different documents
+Ideal for tracking specific items through your business processes
+
+![image](https://github.com/user-attachments/assets/b3ef5308-a389-4ab8-863f-54f3298702af)
+
+#### Batch Visualization
+Provides a comprehensive hierarchy view from Serial and Batch Bundle to individual serial numbers
+Maps the flow: Serial and Batch Bundle → Batch Number → Serial Number
+Essential for industries requiring detailed batch and serial number tracking
+
+![image](https://github.com/user-attachments/assets/350a09ae-83da-4d99-b45f-7ce96c1f606c)
+
 
 ## Requirements
 
@@ -47,7 +74,7 @@ If you encounter issues during installation, try running the following series of
    supervisorctl update
    bench restart
 ```
-3. **Navigate**: Access the "Product Traceability" page in your system.
+3. **Navigate**: Access the "Product / Batch Traceability" page in your system.
 4. **Select and Visualize**:
     - Select a DocType (e.g., Sales Order) from the dropdown menu.
     - Choose a specific document to begin visualization.
@@ -59,13 +86,6 @@ If you encounter issues during installation, try running the following series of
     - Every node represents the document where a particular item is referenced.
     - The edge of each node represents the status of the parent document where the reference is found, along with the quantity of the item.
     - The link on each node can be clicked to navigate to that particular document in Frappe.
-
-## Screenshots
-![image](https://github.com/user-attachments/assets/a57cfc80-6bba-4ad0-b365-a39ec368df01)
-
-![image](https://github.com/user-attachments/assets/db3e5e41-9bb2-4b27-aba2-9e13edc66873)
-
-https://github.com/user-attachments/assets/a7f163af-ff5e-4380-9b52-4bca18440465
 
 ### Key functions:
 1. **`get_graph_data`**:
