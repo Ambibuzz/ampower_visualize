@@ -1,0 +1,8 @@
+{
+  "name": "ampower_visualize",
+  "version": "1.0.0",
+  "description": "Batch traceability visualization",
+  "dependencies": {
+    "@dagrejs/dagre": "^3.0.0"
+  }
+}
