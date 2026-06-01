@@ -572,7 +572,16 @@ class BatchTraceView {
 	}
 
 	render_graph(result) {
-		this.graph_model = { nodes: new Map(), linkKeys: new Set(), links: [] };
+		// voucherSides / batchVouchers are adjacency indexes kept in sync inside
+		// addLink, so per-voucher and per-batch lookups stay O(1) instead of
+		// scanning the link list. visible_model used to be O(N^3) without them.
+		this.graph_model = {
+			nodes: new Map(),
+			linkKeys: new Set(),
+			links: [],
+			voucherSides: new Map(),   // voucherId -> { in: Set<batch>, out: Set<batch> }
+			batchVouchers: new Map(),  // batchId   -> Set<voucherId>
+		};
 		this.movements_by_voucher = new Map();
 		this.expanded = new Set();
 		this.expanded_depth = new Map();
@@ -590,18 +599,17 @@ class BatchTraceView {
 	}
 
 	voucher_sides(voucherId) {
-		const out = new Set();
-		const inn = new Set();
-		for (const l of this.graph_model.links) {
-			if (l.to === voucherId && this.is_batch(l.from)) out.add(l.from);
-			if (l.from === voucherId && this.is_batch(l.to)) inn.add(l.to);
-		}
-		return { out: [...out], in: [...inn] };
+		const sides = this.graph_model.voucherSides.get(voucherId);
+		if (!sides) return { out: [], in: [] };
+		return { out: [...sides.out], in: [...sides.in] };
 	}
 
 	voucher_batches(voucherId) {
-		const { out, in: inn } = this.voucher_sides(voucherId);
-		return new Set([...out, ...inn]);
+		const sides = this.graph_model.voucherSides.get(voucherId);
+		if (!sides) return new Set();
+		const out = new Set(sides.out);
+		sides.in.forEach((b) => out.add(b));
+		return out;
 	}
 
 	is_batch(id) {
@@ -620,18 +628,18 @@ class BatchTraceView {
 	}
 
 	vouchers_of_batch(batch) {
-		const out = [];
-		for (const n of this.graph_model.nodes.values()) {
-			if (n.kind !== "voucher") continue;
-			if (this.voucher_batches(n.id).has(batch)) out.push(n.id);
-		}
-		return out;
+		const vs = this.graph_model.batchVouchers.get(batch);
+		return vs ? [...vs] : [];
 	}
 
 	// A batch node disappears only when every voucher touching it has hidden it.
 	is_batch_fully_hidden(batch) {
-		const vs = this.vouchers_of_batch(batch);
-		return vs.length > 0 && vs.every((v) => this.is_hidden_on(v, batch));
+		const vs = this.graph_model.batchVouchers.get(batch);
+		if (!vs || !vs.size) return false;
+		for (const v of vs) {
+			if (!this.is_hidden_on(v, batch)) return false;
+		}
+		return true;
 	}
 
 	hidden_batch_count() {
@@ -640,6 +648,22 @@ class BatchTraceView {
 			if (node.kind === "batch" && this.is_batch_fully_hidden(node.id)) n++;
 		}
 		return n;
+	}
+
+	badge_text() {
+		let totalBatches = 0;
+		for (const n of this.graph_model.nodes.values()) {
+			if (n.kind === "batch") totalBatches++;
+		}
+		const voucherCount = this.graph_model.nodes.size - totalBatches;
+		const hidden = this.hidden_batch_count();
+		const hiddenNote = hidden ? ` · ${hidden} hidden` : "";
+		return `${totalBatches} batches · ${voucherCount} vouchers${hiddenNote} · click a batch to expand`;
+	}
+
+	update_badge() {
+		const badge = this.$stage.find(".bt-badge").get(0);
+		if (badge) badge.textContent = this.badge_text();
 	}
 
 	auto_truncate() {
@@ -675,17 +699,16 @@ class BatchTraceView {
 		const visibleIds = new Set(nodes.map((n) => n.id));
 		const links = this.graph_model.links.filter((l) => {
 			if (!visibleIds.has(l.from) || !visibleIds.has(l.to)) return false;
-			const voucherId = this.is_batch(l.from) ? l.to : l.from;
-			const batch = this.is_batch(l.from) ? l.from : l.to;
+			const fromBatch = this.is_batch(l.from);
+			const voucherId = fromBatch ? l.to : l.from;
+			const batch = fromBatch ? l.from : l.to;
 			return !this.is_hidden_on(voucherId, batch);
 		});
-		for (const v of this.graph_model.nodes.values()) {
-			if (v.kind !== "voucher") continue;
+		for (const [voucherId, sides] of this.graph_model.voucherSides) {
 			let n = 0;
-			this.voucher_batches(v.id).forEach(
-				(b) => this.is_hidden_on(v.id, b) && n++
-			);
-			if (n) hiddenPerVoucher.set(v.id, n);
+			sides.in.forEach((b) => this.is_hidden_on(voucherId, b) && n++);
+			sides.out.forEach((b) => this.is_hidden_on(voucherId, b) && n++);
+			if (n) hiddenPerVoucher.set(voucherId, n);
 		}
 		return { nodes, links, hiddenPerVoucher };
 	}
@@ -725,10 +748,27 @@ class BatchTraceView {
 		};
 		const addLink = (from, to) => {
 			const k = `${from}»${to}`;
-			if (!m.linkKeys.has(k)) {
-				m.linkKeys.add(k);
-				m.links.push({ from, to });
+			if (m.linkKeys.has(k)) return;
+			m.linkKeys.add(k);
+			m.links.push({ from, to });
+
+			// Keep the adjacency indexes in sync. A link is always batch<->voucher.
+			const fromBatch = this.is_batch(from);
+			const voucherId = fromBatch ? to : from;
+			const batchId = fromBatch ? from : to;
+			let sides = m.voucherSides.get(voucherId);
+			if (!sides) {
+				sides = { in: new Set(), out: new Set() };
+				m.voucherSides.set(voucherId, sides);
 			}
+			// from=batch -> to=voucher means batch flows OUT to the voucher.
+			(fromBatch ? sides.out : sides.in).add(batchId);
+			let vs = m.batchVouchers.get(batchId);
+			if (!vs) {
+				vs = new Set();
+				m.batchVouchers.set(batchId, vs);
+			}
+			vs.add(voucherId);
 		};
 
 		for (const mv of movements) {
@@ -768,16 +808,10 @@ class BatchTraceView {
 		const model = this.visible_model();
 		const layout = this.compute_layout(model);
 
-		const totalBatches = [...this.graph_model.nodes.values()].filter((n) => n.kind === "batch").length;
-		const voucherCount = this.graph_model.nodes.size - totalBatches;
-		const _hiddenN = this.hidden_batch_count();
-		const hiddenNote = _hiddenN ? ` · ${_hiddenN} hidden` : "";
-		const counts = `${totalBatches} batches · ${voucherCount} vouchers${hiddenNote} · click a batch to expand`;
-
 		this.$stage
 			.removeClass("is-empty")
 			.html(
-				`<div class="bt-badge">${frappe.utils.escape_html(counts)}</div>` +
+				`<div class="bt-badge">${frappe.utils.escape_html(this.badge_text())}</div>` +
 					`<div class="bt-zoom">
 						<button data-z="in" title="Zoom in">+</button>
 						<button data-z="out" title="Zoom out">−</button>
@@ -904,14 +938,7 @@ class BatchTraceView {
 		const model = this.visible_model();
 		const layout = this.compute_layout(model);
 
-		const badge = this.$stage.find(".bt-badge").get(0);
-		const totalBatches = [...this.graph_model.nodes.values()].filter((n) => n.kind === "batch").length;
-		const voucherCount = this.graph_model.nodes.size - totalBatches;
-		const _hiddenN = this.hidden_batch_count();
-		const hiddenNote = _hiddenN ? ` · ${_hiddenN} hidden` : "";
-		if (badge) {
-			badge.textContent = `${totalBatches} batches · ${voucherCount} vouchers${hiddenNote} · click a batch to expand`;
-		}
+		this.update_badge();
 		this.$stage.find(".bt-svg").remove();
 		this.$stage.append(this.build_svg(layout, model.hiddenPerVoucher));
 		this.wire_canvas();
@@ -994,9 +1021,8 @@ class BatchTraceView {
 			return;
 		}
 		const depths = new Set();
-		const model = this.visible_model();
-		const edgeDepth = this.compute_edge_depths(model);
-		edgeDepth.forEach((d) => {
+		// build_svg just computed this; reuse instead of doing the BFS twice.
+		c.edgeDepth.forEach((d) => {
 			if (d > 0) depths.add(d);
 		});
 		if (!depths.size) {
@@ -1225,6 +1251,7 @@ class BatchTraceView {
 			viewport,
 			edgeEls,
 			nodeEls,
+			edgeDepth,
 			contentW: width,
 			contentH: height,
 			tx: 0,
@@ -1549,14 +1576,7 @@ class BatchTraceView {
 		const model = this.visible_model();
 		const layout = this.compute_layout(model);
 
-		const totalBatches = [...this.graph_model.nodes.values()].filter((n) => n.kind === "batch").length;
-		const voucherCount = this.graph_model.nodes.size - totalBatches;
-		const _hiddenN = this.hidden_batch_count();
-		const hiddenNote = _hiddenN ? ` · ${_hiddenN} hidden` : "";
-		const badge = this.$stage.find(".bt-badge").get(0);
-		if (badge) {
-			badge.textContent = `${totalBatches} batches · ${voucherCount} vouchers${hiddenNote} · click a batch to expand`;
-		}
+		this.update_badge();
 		this.$stage.find(".bt-svg").remove();
 		this.$stage.append(this.build_svg(layout, model.hiddenPerVoucher));
 		this.wire_canvas();
