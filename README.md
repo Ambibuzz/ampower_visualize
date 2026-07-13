@@ -8,11 +8,11 @@
 [![Frappe](https://img.shields.io/badge/Frappe-v15-0089FF.svg)](https://frappeframework.com/)
 [![ERPNext](https://img.shields.io/badge/ERPNext-v15-2490EF.svg)](https://erpnext.com/)
 
-![AmPower Visualize demo](assets/demo.gif)
+![AmPower Visualize demo](assets/document_traceability_demo.gif)
 
 ---
 
-AmPower Visualize is a powerful tool designed to enhance product traceability and visualize document relationships within your Frappe/ERPNext system. This application provides an interactive, zoomable, and draggable graph view of linked documents, allowing users to explore and understand complex document hierarchies with ease.
+AmPower Visualize is a powerful tool designed to enhance document traceability and visualize document relationships within your Frappe/ERPNext system. This application provides an interactive, zoomable, and draggable graph view of linked documents, allowing users to explore and understand complex document hierarchies with ease.
 
 Empower your business with clear, interactive document traceability using AmPower Visualize!
 
@@ -32,18 +32,16 @@ It can be used for the following use-cases:
 AmPower Visualize offers powerful visualization modes to cater to different traceability needs:
 
 #### Document Level Visualization
-Creates a hierarchical tree view of sales orders and their connected documents
-Shows the complete document flow with child tables containing item information
-Perfect for understanding overall document relationships and tracking order processing
+Creates a hierarchical radial graph of a root document (e.g. Sales Order) and every linked document connected to it — Delivery Notes, Sales Invoices, Purchase Orders, Purchase Receipts and more — grouped by Sales Order Item. Click any node to open a side panel showing its status, items, and quantities, with a direct link to open the document in Frappe.
 
 ![Document level visualization](assets/document-traceability.png)
 
-#### Item Level Visualization
-Generates detailed graphs showing parent-child relationships between items
-Displays how items are linked across different documents
-Ideal for tracking specific items through your business processes
+#### Document Traceability Demo
+Generates detailed graphs showing parent-child relationships between documents
+Displays how documents are linked across different transactions
+Ideal for tracking specific documents through your business processes
 
-![Item level visualization](assets/product_traceability.png)
+![Document traceability demo](assets/document_traceability_demo.gif)
 
 ## Batch Traceability
 
@@ -105,7 +103,7 @@ If you encounter issues during installation, try running the following series of
    supervisorctl update
    bench restart
 ```
-3. **Navigate**: Access the "Product / Batch Traceability" page in your system.
+3. **Navigate**: Access the "Document / Batch Traceability" page in your system.
 4. **Select and Visualize**:
     - Select a DocType (e.g., Sales Order) from the dropdown menu.
     - Choose a specific document to begin visualization.
@@ -121,22 +119,31 @@ If you encounter issues during installation, try running the following series of
 ### Key functions:
 1. **`get_graph_data`**:
 - Fetches linked documents from the backend using `frappe.call`.
-- Constructs a JSON structure with `nodes` and `links` for D3.js.
+- Constructs a JSON structure with `nodes` and `edges` for the graph renderer.
 
-2. **`visualize_graph`**:
+2. **`render_graph` (Document Traceability)**:
+- Builds the graph using a custom SVG radial layout:
+  - **Nodes**: Represent documents (e.g., Sales Orders, Sales Invoices, Delivery Notes).
+  - **Edges**: Define relationships between documents, labelled with quantities.
+- Supports zoom, pan, drag, and a side panel for node details.
+- Uses an adaptive radial fan layout for dynamic, collision-free positioning.
+
+3. **`visualize_graph` (Item & Batch Traceability)**:
 - Builds the graph using D3.js ([LICENSE](https://github.com/d3/d3/blob/main/LICENSE)):
-  - **Nodes**: Represent documents (e.g., Sales Orders, Sales Invoices).
-  - **Links**: Define relationships between documents.
+  - **Nodes**: Represent items or batches.
+  - **Links**: Define relationships between nodes.
 - Adds zoom, pan, and drag functionality for intuitive navigation.
 - Uses force-directed layout for dynamic positioning.
 
 ### Customizations:
 
-AmPower Visualize uses **D3.js**, a powerful JavaScript library, to render the interactive document graph. The library consumes JSON data from the backend and creates a graphical representation of the basis of this input.
+**Document Traceability** uses a custom SVG engine with an adaptive radial layout — no external graph library required. Node positions, fan angles, and radii are computed from the document hierarchy returned by the backend.
+
+**Item and Batch Traceability** use **D3.js**, a powerful JavaScript library, to render force-directed graphs. The library consumes JSON data from the backend and creates a graphical representation on that basis.
 
 - Node colors and sizes vary by document type.
 - A legend helps users identify node types and their significance.
-- Links include labels indicating document status and quantities for respective items.
+- Edges include labels indicating document status and quantities for respective items.
 
 ## Future Scope
 
