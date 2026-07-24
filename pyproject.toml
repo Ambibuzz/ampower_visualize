@@ -7,7 +7,10 @@ description = "Visualize Transactions on ERPNext"
 requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]
-dependencies = []
+dependencies = [
+    "frappe>=15.0.0,<17.0.0",
+    "erpnext>=15.0.0,<17.0.0"
+]
 
 [build-system]
 requires = ["flit_core >=3.4,<4"]
