@@ -166,9 +166,8 @@ class DocumentTracer:
 		"""
 		Add a leaf document node in the radial item graph.
 
-		When item_nid is supplied a unique node is created per (item, document)
-		pair so the same document (e.g. DN-001) can appear separately for every
-		item row that links to it.
+		A single node is shared across all item rows that link to the same
+		document so the same DN/SI/PR/PI never appears more than once.
 
 		Generic sibling-exclusion rule: if the leaf's doctype matches the root
 		document's doctype it is a sibling (e.g. another DN when visualising a DN)
@@ -176,7 +175,7 @@ class DocumentTracer:
 		"""
 		if doctype == self._root_doctype:
 			return None
-		nid = f"leaf||{item_nid}||{doctype}||{name}" if item_nid else self._nid(doctype, name)
+		nid = self._nid(doctype, name)
 		if nid in self.nodes:
 			return nid
 		try:
@@ -380,12 +379,10 @@ class DocumentTracer:
 				filters={"sales_order": so_name, "item_code": r.item_code, "docstatus": ["!=", 2]},
 				fields=["parent"], distinct=True, limit=20):
 				self._add_item_edge(item_nid, self._add_leaf_node("Material Request", d.parent, item_nid))
-
 			for d in frappe.get_all("Purchase Order Item",
 				filters={"sales_order": so_name, "item_code": r.item_code, "docstatus": ["!=", 2]},
 				fields=["parent"], distinct=True, limit=20):
 				self._add_item_edge(item_nid, self._add_leaf_node("Purchase Order", d.parent, item_nid))
-
 			po_names = list({
 				d.parent for d in frappe.get_all("Purchase Order Item",
 					filters={"sales_order": so_name, "item_code": r.item_code, "docstatus": ["!=", 2]},
